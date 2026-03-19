@@ -643,63 +643,6 @@ img { display: block; max-width: 100%; }
 .orbit-ring-2 .orbit-item { animation: orbitCounterSpin 45s linear infinite reverse; }
 @keyframes orbitCounterSpin { to { transform: rotate(var(--angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--angle) - 360deg)); } }
 
-/* --- Team --- */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-}
-.team-card {
-    padding: 40px 24px;
-    border: 1px solid var(--graphite);
-    border-radius: 8px;
-    text-align: center;
-    transition: all 0.5s var(--ease);
-    position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-}
-.team-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent, var(--red-glow));
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-.team-card:hover::before { opacity: 1; }
-.team-card:hover { border-color: rgba(230,57,70,0.3); transform: translateY(-8px); }
-.team-avatar {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid var(--graphite);
-    transition: border-color 0.3s;
-}
-.team-card:hover .team-avatar { border-color: var(--red); }
-.team-avatar-placeholder {
-    width: 100%;
-    height: 100%;
-    background: var(--graphite);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--red);
-}
-.team-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-.team-role {
-    font-size: 13px;
-    color: var(--red);
-    font-weight: 500;
-    display: block;
-    margin-bottom: 12px;
-}
-.team-card p { font-size: 14px; color: var(--slate); line-height: 1.5; }
-
 /* --- Testimonials --- */
 .testimonials-slider { position: relative; min-height: 250px; margin-bottom: 40px; }
 .testimonial {
@@ -964,7 +907,6 @@ img { display: block; max-width: 100%; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .work-grid { grid-template-columns: 1fr; }
     .work-card-large { grid-column: span 1; }
-    .team-grid { grid-template-columns: 1fr 1fr; }
     .cta-wrapper { grid-template-columns: 1fr; gap: 48px; }
     .tech-orbit { width: 360px; height: 360px; }
     .orbit-ring-1 { width: 220px; height: 220px; margin: -110px 0 0 -110px; }
@@ -984,7 +926,6 @@ img { display: block; max-width: 100%; }
     .service-item { grid-template-columns: 40px 1fr; gap: 16px; }
     .service-tags { display: none; }
     .service-arrow { display: none; }
-    .team-grid { grid-template-columns: 1fr; }
     .about-counters { grid-template-columns: 1fr; }
     .footer-top { flex-direction: column; gap: 40px; }
     .footer-links { gap: 40px; }

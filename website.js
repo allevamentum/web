@@ -56,7 +56,7 @@ function initCustomCursor() {
     animate();
 
     // Hover effect on interactive elements
-    const hoverTargets = document.querySelectorAll('a, button, .work-card, .team-card, .service-item');
+    const hoverTargets = document.querySelectorAll('a, button, .work-card, .service-item');
     hoverTargets.forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursor.classList.add('hover');
