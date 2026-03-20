@@ -1,8 +1,7 @@
 /* ============================================
-   ALLEVAMENTUM — Premium Interactions v4
-   Blue-violet scheme, magnetic buttons,
-   3D tilt cards, interactive dot grid,
-   scroll-color text, text scramble
+   ALLEVAMENTUM — Premium Interactions v5
+   Dark gray, multi-accent, background particles,
+   soft scrolling, magnetic buttons, 3D tilt
    ============================================ */
 
 (function(){
@@ -22,10 +21,10 @@ function boot() {
     initScrollColorText();
     initTilt();
     initMagnetic();
-    initTestimonials();
     initSmoothLinks();
     initParallax();
     initTextScramble();
+    initBackgroundParticles();
 }
 
 /* ===================== LOADER ===================== */
@@ -50,7 +49,7 @@ function initSmoothScroll() {
 
     (function tick() {
         scrollY = window.scrollY;
-        smoothY += (scrollY - smoothY) * 0.085;
+        smoothY += (scrollY - smoothY) * 0.09;
         if (Math.abs(scrollY - smoothY) < 0.5) smoothY = scrollY;
         main.style.transform = `translate3d(0,${-smoothY}px,0)`;
         requestAnimationFrame(tick);
@@ -82,7 +81,7 @@ function initCursor() {
         requestAnimationFrame(loop);
     })();
 
-    const hovers = 'a,button,.service-card,.adv-item,.proc-card,.tech-cat,.t-pill,.tn-btn,.btn,.testi-card';
+    const hovers = 'a,button,.service-card,.adv-item,.proc-card,.tech-cat,.t-pill,.btn';
     document.addEventListener('mouseover', e => {
         if (e.target.closest(hovers)) { dot.classList.add('big'); ring.classList.add('big'); }
     });
@@ -153,7 +152,6 @@ function initCounters() {
         const start = performance.now();
         (function tick(now) {
             const p = Math.min((now - start) / dur, 1);
-            // Spring-like bounce at the end
             const ease = p < 0.8
                 ? 1 - Math.pow(1 - p / 0.8, 4)
                 : 1 + Math.sin((p - 0.8) / 0.2 * Math.PI) * 0.03;
@@ -188,12 +186,26 @@ function initHeroDotGrid() {
     const activationRadius = 200;
     const connectionRadius = 65;
 
+    const dotColors = [
+        [79, 125, 247],   // accent blue
+        [139, 108, 247],  // accent purple
+        [45, 212, 191],   // teal
+        [245, 166, 35],   // warm amber
+    ];
+
     function generateDots() {
         dots = [];
         const cols = Math.ceil(w / spacing) + 1;
         const rows = Math.ceil(h / spacing) + 1;
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
+                const colorRoll = Math.random();
+                let color;
+                if (colorRoll < 0.65) color = dotColors[0];
+                else if (colorRoll < 0.8) color = dotColors[1];
+                else if (colorRoll < 0.92) color = dotColors[2];
+                else color = dotColors[3];
+
                 dots.push({
                     baseX: c * spacing, baseY: r * spacing,
                     x: c * spacing, y: r * spacing,
@@ -201,6 +213,7 @@ function initHeroDotGrid() {
                     alpha: 0, targetAlpha: 0,
                     size: 1, targetSize: 1,
                     phase: Math.random() * Math.PI * 2,
+                    color: color,
                 });
             }
         }
@@ -242,7 +255,8 @@ function initHeroDotGrid() {
             if (dot.alpha > 0.01) {
                 ctx.beginPath();
                 ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(79,125,247,${dot.alpha})`;
+                const c = dot.color;
+                ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${dot.alpha})`;
                 ctx.fill();
             }
         }
@@ -269,7 +283,6 @@ function initHeroDotGrid() {
         const triSize = Math.min(w, h) * 0.16;
         const triAlpha = 0.012 + Math.sin(time * 0.5) * 0.004;
 
-        // Outer
         ctx.beginPath();
         ctx.moveTo(cx, cy - triSize);
         ctx.lineTo(cx + triSize * 0.87, cy + triSize * 0.5);
@@ -279,7 +292,6 @@ function initHeroDotGrid() {
         ctx.lineWidth = 0.8;
         ctx.stroke();
 
-        // Inner
         const inner = triSize * 0.5;
         ctx.beginPath();
         ctx.moveTo(cx, cy - inner);
@@ -289,6 +301,93 @@ function initHeroDotGrid() {
         ctx.strokeStyle = `rgba(139,108,247,${triAlpha * 0.8})`;
         ctx.lineWidth = 0.5;
         ctx.stroke();
+
+        requestAnimationFrame(draw);
+    }
+    draw();
+}
+
+/* ===================== BACKGROUND PARTICLES ===================== */
+function initBackgroundParticles() {
+    const canvas = document.getElementById('bgCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h;
+
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const colors = [
+        [79, 125, 247],   // blue
+        [139, 108, 247],  // purple
+        [45, 212, 191],   // teal
+        [245, 166, 35],   // amber
+    ];
+
+    const particleCount = 50;
+    const particles = [];
+
+    for (let i = 0; i < particleCount; i++) {
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const isTriangle = Math.random() < 0.25;
+        particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.2 - 0.1,
+            size: 1.5 + Math.random() * 2.5,
+            color: color,
+            alpha: 0.03 + Math.random() * 0.06,
+            phase: Math.random() * Math.PI * 2,
+            isTriangle: isTriangle,
+            rotation: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.005,
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (const p of particles) {
+            p.x += p.vx + Math.sin(p.phase + performance.now() * 0.0003) * 0.15;
+            p.y += p.vy;
+            p.rotation += p.rotSpeed;
+
+            // Wrap around edges
+            if (p.x < -10) p.x = w + 10;
+            if (p.x > w + 10) p.x = -10;
+            if (p.y < -10) p.y = h + 10;
+            if (p.y > h + 10) p.y = -10;
+
+            const c = p.color;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation);
+            ctx.globalAlpha = p.alpha;
+
+            if (p.isTriangle) {
+                const s = p.size * 1.5;
+                ctx.beginPath();
+                ctx.moveTo(0, -s);
+                ctx.lineTo(s * 0.87, s * 0.5);
+                ctx.lineTo(-s * 0.87, s * 0.5);
+                ctx.closePath();
+                ctx.strokeStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
+                ctx.lineWidth = 0.6;
+                ctx.stroke();
+            } else {
+                ctx.beginPath();
+                ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
+                ctx.fill();
+            }
+
+            ctx.restore();
+        }
 
         requestAnimationFrame(draw);
     }
@@ -430,27 +529,6 @@ function initTextScramble() {
             }, 30);
         });
     });
-}
-
-/* ===================== TESTIMONIALS ===================== */
-function initTestimonials() {
-    const cards = document.querySelectorAll('.testi-card');
-    const dots = document.querySelectorAll('.tn-dot');
-    const prev = document.getElementById('tPrev');
-    const next = document.getElementById('tNext');
-    if (!cards.length || !prev || !next) return;
-
-    let cur = 0;
-    function goTo(i) {
-        cards[cur].classList.remove('active');
-        dots[cur].classList.remove('on');
-        cur = (i + cards.length) % cards.length;
-        cards[cur].classList.add('active');
-        dots[cur].classList.add('on');
-    }
-    prev.addEventListener('click', () => goTo(cur - 1));
-    next.addEventListener('click', () => goTo(cur + 1));
-    setInterval(() => goTo(cur + 1), 8000);
 }
 
 /* ===================== SMOOTH LINKS ===================== */

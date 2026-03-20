@@ -16,6 +16,7 @@
 <div class="loader" id="loader">
     <div class="loader-inner">
         <svg class="loader-mark" viewBox="0 0 100 100" width="60" height="60">
+            <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F7DF7"/><stop offset="100%" stop-color="#8B6CF7"/></linearGradient></defs>
             <polygon class="loader-tri t1" points="50,8 92,92 8,92"/>
             <polygon class="loader-tri t2" points="50,28 78,82 22,82"/>
             <polygon class="loader-tri t3" points="50,44 66,74 34,74"/>
@@ -32,15 +33,18 @@
 <!-- GRAIN -->
 <div class="grain"></div>
 
+<!-- BACKGROUND CANVAS -->
+<canvas class="bg-canvas" id="bgCanvas"></canvas>
+
 <!-- NAV -->
 <nav class="nav" id="nav">
     <div class="nav-inner">
         <a href="#" class="nav-logo" aria-label="Home">
             <svg viewBox="0 0 100 100" width="32" height="32">
-                <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F7DF7"/><stop offset="100%" stop-color="#8B6CF7"/></linearGradient></defs>
-                <polygon points="50,8 92,92 8,92" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
-                <polygon points="50,28 78,82 22,82" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
-                <polygon points="50,44 66,74 34,74" fill="url(#logoGrad)"/>
+                <defs><linearGradient id="navGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F7DF7"/><stop offset="100%" stop-color="#8B6CF7"/></linearGradient></defs>
+                <polygon points="50,8 92,92 8,92" fill="none" stroke="url(#navGrad)" stroke-width="3"/>
+                <polygon points="50,28 78,82 22,82" fill="none" stroke="url(#navGrad)" stroke-width="3"/>
+                <polygon points="50,44 66,74 34,74" fill="url(#navGrad)"/>
             </svg>
         </a>
         <div class="nav-center">
@@ -50,7 +54,7 @@
             <a href="#tech" class="nav-link">Technology</a>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <a href="#contact" class="nav-cta magnetic" data-magnetic>
+        <a href="#contact" class="nav-cta" data-magnetic>
             <span class="nav-cta-dot"></span>
             Get in Touch
         </a>
@@ -76,6 +80,11 @@
 <!-- SCROLL WRAPPER -->
 <main id="smooth">
 
+<!-- Floating decorative shapes -->
+<div class="float-shape float-shape-1"></div>
+<div class="float-shape float-shape-2"></div>
+<div class="float-shape float-shape-3"></div>
+
 <!-- HERO -->
 <section class="hero" id="hero">
     <canvas class="hero-canvas" id="heroCanvas"></canvas>
@@ -89,7 +98,7 @@
             Premium Digital Agency
         </div>
 
-        <h1 class="hero-h1" id="heroH1">
+        <h1 class="hero-h1">
             <span class="h1-line" data-anim="clip" data-delay="1">
                 <span class="h1-word">We don't build</span>
             </span>
@@ -238,12 +247,9 @@
                     </div>
                     <h3>Mobile Apps</h3>
                     <p>Native iOS & Android, React Native, Flutter. From MVP to millions of users.</p>
-                    <div class="sc-tags">
-                        <span>iOS</span><span>Android</span><span>React Native</span><span>Flutter</span>
-                    </div>
+                    <div class="sc-tags"><span>iOS</span><span>Android</span><span>React Native</span><span>Flutter</span></div>
                 </div>
             </div>
-
             <div class="service-card" data-glow data-anim="fade" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
@@ -260,12 +266,9 @@
                     </div>
                     <h3>Web Platforms</h3>
                     <p>High-performance SaaS, e-commerce, and PWAs that convert visitors into customers.</p>
-                    <div class="sc-tags">
-                        <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
-                    </div>
+                    <div class="sc-tags"><span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span></div>
                 </div>
             </div>
-
             <div class="service-card" data-glow data-anim="fade" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
@@ -273,23 +276,17 @@
                         <span class="sc-num">03</span>
                         <div class="sc-icon">
                             <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                                <circle cx="24" cy="24" r="18"/>
-                                <circle cx="24" cy="24" r="8" opacity="0.4"/>
-                                <line x1="24" y1="6" x2="24" y2="12" opacity="0.3"/>
-                                <line x1="24" y1="36" x2="24" y2="42" opacity="0.3"/>
-                                <line x1="6" y1="24" x2="12" y2="24" opacity="0.3"/>
-                                <line x1="36" y1="24" x2="42" y2="24" opacity="0.3"/>
+                                <circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="8" opacity="0.4"/>
+                                <line x1="24" y1="6" x2="24" y2="12" opacity="0.3"/><line x1="24" y1="36" x2="24" y2="42" opacity="0.3"/>
+                                <line x1="6" y1="24" x2="12" y2="24" opacity="0.3"/><line x1="36" y1="24" x2="42" y2="24" opacity="0.3"/>
                             </svg>
                         </div>
                     </div>
                     <h3>Product Design</h3>
                     <p>Research-backed UI/UX that users love. Design systems that scale with your brand.</p>
-                    <div class="sc-tags">
-                        <span>Figma</span><span>Prototyping</span><span>Design Systems</span><span>UX Research</span>
-                    </div>
+                    <div class="sc-tags"><span>Figma</span><span>Prototyping</span><span>Design Systems</span><span>UX Research</span></div>
                 </div>
             </div>
-
             <div class="service-card" data-glow data-anim="fade" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
@@ -305,9 +302,7 @@
                     </div>
                     <h3>CTO-as-a-Service</h3>
                     <p>Technical leadership, architecture reviews, and strategic roadmapping for scaling startups.</p>
-                    <div class="sc-tags">
-                        <span>Architecture</span><span>Strategy</span><span>Team Building</span>
-                    </div>
+                    <div class="sc-tags"><span>Architecture</span><span>Strategy</span><span>Team Building</span></div>
                 </div>
             </div>
         </div>
@@ -345,7 +340,6 @@
             <span class="label">How We Work</span>
             <h2 class="heading-lg">A proven path<br>from idea to <em>impact</em></h2>
         </div>
-
         <div class="process-grid">
             <div class="proc-card" data-glow data-anim="fade">
                 <div class="glow-card-border"></div>
@@ -395,118 +389,42 @@
             <h2 class="heading-lg">Battle-tested <em>stack</em></h2>
             <p class="tech-sub" data-anim="fade">We use the best tools for the job — never the trendiest. Every choice is optimized for performance, scalability, and developer velocity.</p>
         </div>
-
         <div class="tech-categories" data-anim="fade">
             <div class="tech-cat" data-glow>
                 <div class="glow-card-border"></div>
                 <div class="tc-inner">
                     <h4>Frontend</h4>
-                    <div class="tc-pills">
-                        <span class="t-pill">React</span>
-                        <span class="t-pill">Next.js</span>
-                        <span class="t-pill">TypeScript</span>
-                        <span class="t-pill">Tailwind</span>
-                    </div>
+                    <div class="tc-pills"><span class="t-pill">React</span><span class="t-pill">Next.js</span><span class="t-pill">TypeScript</span><span class="t-pill">Tailwind</span></div>
                 </div>
             </div>
             <div class="tech-cat" data-glow>
                 <div class="glow-card-border"></div>
                 <div class="tc-inner">
                     <h4>Mobile</h4>
-                    <div class="tc-pills">
-                        <span class="t-pill">Swift</span>
-                        <span class="t-pill">Kotlin</span>
-                        <span class="t-pill">React Native</span>
-                        <span class="t-pill">Flutter</span>
-                    </div>
+                    <div class="tc-pills"><span class="t-pill">Swift</span><span class="t-pill">Kotlin</span><span class="t-pill">React Native</span><span class="t-pill">Flutter</span></div>
                 </div>
             </div>
             <div class="tech-cat" data-glow>
                 <div class="glow-card-border"></div>
                 <div class="tc-inner">
                     <h4>Backend</h4>
-                    <div class="tc-pills">
-                        <span class="t-pill">Node.js</span>
-                        <span class="t-pill">Python</span>
-                        <span class="t-pill">PostgreSQL</span>
-                        <span class="t-pill">GraphQL</span>
-                    </div>
+                    <div class="tc-pills"><span class="t-pill">Node.js</span><span class="t-pill">Python</span><span class="t-pill">PostgreSQL</span><span class="t-pill">GraphQL</span></div>
                 </div>
             </div>
             <div class="tech-cat" data-glow>
                 <div class="glow-card-border"></div>
                 <div class="tc-inner">
                     <h4>Infrastructure</h4>
-                    <div class="tc-pills">
-                        <span class="t-pill">AWS</span>
-                        <span class="t-pill">Docker</span>
-                        <span class="t-pill">Kubernetes</span>
-                        <span class="t-pill">Firebase</span>
-                    </div>
+                    <div class="tc-pills"><span class="t-pill">AWS</span><span class="t-pill">Docker</span><span class="t-pill">Kubernetes</span><span class="t-pill">Firebase</span></div>
                 </div>
             </div>
             <div class="tech-cat" data-glow>
                 <div class="glow-card-border"></div>
                 <div class="tc-inner">
                     <h4>Design</h4>
-                    <div class="tc-pills">
-                        <span class="t-pill">Figma</span>
-                        <span class="t-pill">Framer</span>
-                        <span class="t-pill">Storybook</span>
-                    </div>
+                    <div class="tc-pills"><span class="t-pill">Figma</span><span class="t-pill">Framer</span><span class="t-pill">Storybook</span></div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="sec" id="testimonials">
-    <div class="container">
-        <div class="sec-header center" data-anim="clip">
-            <span class="label">Results</span>
-            <h2 class="heading-lg">What our clients <em>say</em></h2>
-        </div>
-
-        <div class="testi-wrap">
-            <div class="testi-card active" data-idx="0" data-glow>
-                <div class="glow-card-border"></div>
-                <div class="testi-inner">
-                    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>Allevamentum didn't just build our app — they elevated our entire product vision. The team's technical expertise and strategic thinking were instrumental in our Series A raise.</blockquote>
-                    <div class="testi-who">
-                        <div class="testi-av">JM</div>
-                        <div><strong>James Mitchell</strong><span>CEO, FinFlow</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="testi-card" data-idx="1" data-glow>
-                <div class="glow-card-border"></div>
-                <div class="testi-inner">
-                    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>Working with Allevamentum felt like having a world-class in-house team. Communication, code quality, and design sense — all exceptional.</blockquote>
-                    <div class="testi-who">
-                        <div class="testi-av">RP</div>
-                        <div><strong>Rachel Park</strong><span>CTO, NexaHealth</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="testi-card" data-idx="2" data-glow>
-                <div class="glow-card-border"></div>
-                <div class="testi-inner">
-                    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>The precision and attention to detail is unlike anything I've experienced. They turned our rough concept into a product users genuinely love.</blockquote>
-                    <div class="testi-who">
-                        <div class="testi-av">TW</div>
-                        <div><strong>Thomas Wright</strong><span>Founder, Artisan Market</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="testi-nav">
-            <button class="tn-btn" id="tPrev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-            <div class="tn-dots"><span class="tn-dot on"></span><span class="tn-dot"></span><span class="tn-dot"></span></div>
-            <button class="tn-btn" id="tNext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         </div>
     </div>
 </section>
@@ -539,7 +457,7 @@
                             <option>Full Product Build</option>
                         </select>
                         <textarea rows="4" placeholder="Tell us about your project and timeline" required></textarea>
-                        <button type="submit" class="btn magnetic" data-magnetic>
+                        <button type="submit" class="btn" data-magnetic>
                             <span>Send Message</span>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </button>
