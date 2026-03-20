@@ -13,8 +13,8 @@
     --red: #E63946;
     --red-soft: rgba(230,57,70,0.12);
     --red-glow: 0 0 12px rgba(230,57,70,0.25), 0 0 50px rgba(230,57,70,0.08);
-    --glass: rgba(255,255,255,0.025);
-    --glass-b: rgba(255,255,255,0.05);
+    --glass: rgba(255,255,255,0.04);
+    --glass-b: rgba(255,255,255,0.07);
     --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --serif: 'Playfair Display', Georgia, serif;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -191,7 +191,7 @@ img{display:block;max-width:100%}
 .scroll-text-section{padding:clamp(80px,14vh,180px) 0}
 .scroll-text{font-size:clamp(24px,3.5vw,52px);font-weight:700;line-height:1.35;letter-spacing:-1px;max-width:1000px}
 .scroll-text em{font-family:var(--serif);font-style:italic}
-.scroll-text .st-word{display:inline-block;color:var(--text3);transition:color .15s}
+.scroll-text .st-word{display:inline-block;color:rgba(255,255,255,0.15);transition:color .15s}
 .scroll-text .st-word.lit{color:var(--text)}
 .scroll-text .st-word.lit em{color:var(--red)}
 
