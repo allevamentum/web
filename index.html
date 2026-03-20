@@ -7,459 +7,502 @@
     <meta name="description" content="Full-service digital agency crafting exceptional mobile apps, web platforms, and strategic solutions for ambitious startups.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="website.css">
 </head>
 <body>
 
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-inner">
-            <svg viewBox="0 0 100 100" class="preloader-logo">
-                <polygon points="50,8 92,92 8,92" fill="none" stroke="#E63946" stroke-width="2" class="preloader-tri tri-outer"/>
-                <polygon points="50,28 78,82 22,82" fill="none" stroke="#E63946" stroke-width="2" class="preloader-tri tri-mid"/>
-                <polygon points="50,48 64,72 36,72" fill="#E63946" class="preloader-tri tri-inner"/>
+<!-- ====== PRELOADER ====== -->
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <svg class="loader-mark" viewBox="0 0 100 100" width="56" height="56">
+            <polygon class="loader-tri t1" points="50,8 92,92 8,92"/>
+            <polygon class="loader-tri t2" points="50,28 78,82 22,82"/>
+            <polygon class="loader-tri t3" points="50,44 66,74 34,74"/>
+        </svg>
+        <div class="loader-name" id="loaderName">ALLEVAMENTUM</div>
+        <div class="loader-line"><span class="loader-fill"></span></div>
+    </div>
+</div>
+
+<!-- ====== CURSOR ====== -->
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<!-- ====== GRAIN ====== -->
+<div class="grain"></div>
+
+<!-- ====== NAV ====== -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo" aria-label="Home">
+            <svg viewBox="0 0 100 100" width="30" height="30">
+                <polygon points="50,8 92,92 8,92" fill="none" stroke="currentColor" stroke-width="3"/>
+                <polygon points="50,28 78,82 22,82" fill="none" stroke="currentColor" stroke-width="3"/>
+                <polygon points="50,44 66,74 34,74" fill="currentColor"/>
             </svg>
-            <div class="preloader-text">ALLEVAMENTUM</div>
-            <div class="preloader-bar"><div class="preloader-progress"></div></div>
+        </a>
+        <div class="nav-center" id="navLinks">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#work" class="nav-link">Work</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <a href="#contact" class="nav-cta">
+            <span class="nav-cta-pulse"></span>
+            Let's Talk
+        </a>
+        <button class="burger" id="burger" aria-label="Menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== MOBILE NAV ====== -->
+<div class="mob-nav" id="mobNav">
+    <div class="mob-nav-inner">
+        <a href="#about" class="mob-link">About</a>
+        <a href="#services" class="mob-link">Services</a>
+        <a href="#work" class="mob-link">Work</a>
+        <a href="#contact" class="mob-link">Contact</a>
+        <div class="mob-info">
+            <span>hello@allevamentum.com</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== SCROLL WRAPPER ====== -->
+<main id="smooth">
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="hero">
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+    <div class="hero-fade"></div>
+
+    <div class="hero-content container">
+        <div class="hero-badge" data-anim="clip" data-delay="0">
+            <span class="badge-dot"></span>
+            Digital Agency &mdash; Est. 2026
+        </div>
+
+        <h1 class="hero-h1">
+            <span class="h1-line" data-anim="clip" data-delay="1">
+                <span class="h1-word">We</span>
+                <span class="h1-word">build</span>
+            </span>
+            <span class="h1-line" data-anim="clip" data-delay="2">
+                <span class="h1-word h1-outline">digital</span>
+                <span class="h1-word">products</span>
+            </span>
+            <span class="h1-line" data-anim="clip" data-delay="3">
+                <span class="h1-word">that</span>
+                <span class="h1-word h1-accent">elevate</span>
+            </span>
+        </h1>
+
+        <div class="hero-foot" data-anim="fade" data-delay="4">
+            <p class="hero-desc">Full-service digital agency crafting exceptional mobile apps, web platforms, and strategic solutions for ambitious startups.</p>
+            <div class="hero-stats">
+                <div class="h-stat">
+                    <span class="h-stat-n" data-count="50">0</span><span class="h-stat-s">+</span>
+                    <span class="h-stat-l">Projects</span>
+                </div>
+                <div class="h-stat">
+                    <span class="h-stat-n" data-count="98">0</span><span class="h-stat-s">%</span>
+                    <span class="h-stat-l">Satisfaction</span>
+                </div>
+                <div class="h-stat">
+                    <span class="h-stat-n" data-count="5">0</span><span class="h-stat-s">&#9733;</span>
+                    <span class="h-stat-l">Rating</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-glow" id="cursorGlow"></div>
-
-    <!-- Ambient blobs -->
-    <div class="ambient">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+    <div class="scroll-hint" data-anim="fade" data-delay="5">
+        <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+        <span>Scroll</span>
     </div>
+</section>
 
-    <!-- Grain overlay -->
-    <div class="grain"></div>
-
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="#" class="nav-logo">
-                <svg width="32" height="32" viewBox="0 0 100 100">
-                    <polygon points="50,8 92,92 8,92" fill="none" stroke="currentColor" stroke-width="3"/>
-                    <polygon points="50,28 78,82 22,82" fill="none" stroke="currentColor" stroke-width="3"/>
-                    <polygon points="50,48 64,72 36,72" fill="currentColor"/>
-                </svg>
-                <span class="nav-wordmark">ALLEVAMENTUM</span>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#work">Work</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <a href="#contact" class="nav-cta">
-                <span class="nav-cta-dot"></span>
-                <span>Start a Project</span>
-            </a>
-            <button class="nav-burger" id="navBurger" aria-label="Menu">
-                <span></span><span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-inner">
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#services" class="mobile-link">Services</a>
-            <a href="#work" class="mobile-link">Work</a>
-            <a href="#contact" class="mobile-link">Contact</a>
-        </div>
+<!-- ====== MARQUEE ====== -->
+<div class="marquee">
+    <div class="marquee-inner">
+        <span>App Development</span><span class="mq-tri">&#9650;</span>
+        <span>UI/UX Design</span><span class="mq-tri">&#9650;</span>
+        <span>Web Platforms</span><span class="mq-tri">&#9650;</span>
+        <span>Consulting</span><span class="mq-tri">&#9650;</span>
+        <span>Strategy</span><span class="mq-tri">&#9650;</span>
+        <span>Branding</span><span class="mq-tri">&#9650;</span>
+        <span>App Development</span><span class="mq-tri">&#9650;</span>
+        <span>UI/UX Design</span><span class="mq-tri">&#9650;</span>
+        <span>Web Platforms</span><span class="mq-tri">&#9650;</span>
+        <span>Consulting</span><span class="mq-tri">&#9650;</span>
+        <span>Strategy</span><span class="mq-tri">&#9650;</span>
+        <span>Branding</span><span class="mq-tri">&#9650;</span>
     </div>
+</div>
 
-    <!-- ======================== HERO ======================== -->
-    <section class="hero" id="hero">
-        <canvas id="heroCanvas"></canvas>
+<!-- ====== ABOUT ====== -->
+<section class="sec" id="about">
+    <div class="container">
+        <!-- Decorative SVG mesh -->
+        <svg class="about-deco" viewBox="0 0 600 400" fill="none" aria-hidden="true">
+            <defs>
+                <linearGradient id="meshGrad" x1="0" y1="0" x2="600" y2="400" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#E63946" stop-opacity="0.06"/>
+                    <stop offset="100%" stop-color="#E63946" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            <path d="M0 200 Q150 80 300 200 T600 200" stroke="url(#meshGrad)" stroke-width="1" opacity="0.5"/>
+            <path d="M0 240 Q150 120 300 240 T600 240" stroke="url(#meshGrad)" stroke-width="1" opacity="0.35"/>
+            <path d="M0 280 Q150 160 300 280 T600 280" stroke="url(#meshGrad)" stroke-width="1" opacity="0.2"/>
+            <path d="M50 100 L150 180 L80 260 Z" fill="#E63946" opacity="0.02"/>
+            <path d="M400 60 L520 150 L380 200 Z" fill="#E63946" opacity="0.015"/>
+        </svg>
 
-        <div class="hero-content">
-            <div class="hero-badge" data-reveal>
-                <span class="hero-badge-dot"></span>
-                Digital Agency &mdash; Est. 2026
+        <div class="about-grid">
+            <div class="about-left">
+                <span class="label" data-anim="clip">About Us</span>
+                <h2 class="heading-lg" data-anim="clip">
+                    We are the<br><em>instrument</em> of<br>your elevation.
+                </h2>
             </div>
-
-            <h1 class="hero-title">
-                <div class="hero-line" data-reveal><span class="hw">We</span> <span class="hw">build</span></div>
-                <div class="hero-line" data-reveal><span class="hw outline">digital</span> <span class="hw">products</span></div>
-                <div class="hero-line" data-reveal><span class="hw">that</span> <span class="hw glow">elevate</span></div>
-            </h1>
-
-            <div class="hero-foot" data-reveal>
-                <p class="hero-desc">Full-service digital agency crafting exceptional mobile apps, web platforms, and strategic solutions for ambitious startups.</p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <span class="hero-stat-num" data-count="50">0</span><span class="hero-stat-sfx">+</span>
-                        <span class="hero-stat-lbl">Projects</span>
+            <div class="about-right">
+                <div class="about-text" data-anim="fade">
+                    <p>Born from a Latin root meaning "instrument of elevation," Allevamentum exists to lift startups above the noise. We combine strategic thinking with technical excellence to build products people love.</p>
+                    <p>Every pixel is purposeful. Every line of code is precise. Every decision moves you forward.</p>
+                </div>
+                <div class="metrics" data-anim="fade">
+                    <div class="metric-card">
+                        <span class="metric-n" data-count="7">0</span>
+                        <span class="metric-l">Years Combined<br>Experience</span>
                     </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-num" data-count="98">0</span><span class="hero-stat-sfx">%</span>
-                        <span class="hero-stat-lbl">Satisfaction</span>
+                    <div class="metric-card">
+                        <span class="metric-n" data-count="3">0</span>
+                        <span class="metric-l">Countries<br>Served</span>
                     </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-num" data-count="5">0</span><span class="hero-stat-sfx">&#9733;</span>
-                        <span class="hero-stat-lbl">Rating</span>
+                    <div class="metric-card">
+                        <span class="metric-n">24<small>/7</small></span>
+                        <span class="metric-l">Support &<br>Maintenance</span>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="hero-scroll" data-reveal>
-            <div class="hero-scroll-mouse">
-                <div class="hero-scroll-wheel"></div>
-            </div>
-            <span>Scroll to explore</span>
-        </div>
-    </section>
-
-    <!-- ======================== MARQUEE ======================== -->
-    <div class="marquee">
-        <div class="marquee-track">
-            <span>APP DEVELOPMENT</span><span class="mq-sep">/</span>
-            <span>UI/UX DESIGN</span><span class="mq-sep">/</span>
-            <span>CONSULTING</span><span class="mq-sep">/</span>
-            <span>WEB PLATFORMS</span><span class="mq-sep">/</span>
-            <span>STRATEGY</span><span class="mq-sep">/</span>
-            <span>BRANDING</span><span class="mq-sep">/</span>
-            <span>APP DEVELOPMENT</span><span class="mq-sep">/</span>
-            <span>UI/UX DESIGN</span><span class="mq-sep">/</span>
-            <span>CONSULTING</span><span class="mq-sep">/</span>
-            <span>WEB PLATFORMS</span><span class="mq-sep">/</span>
-            <span>STRATEGY</span><span class="mq-sep">/</span>
-            <span>BRANDING</span><span class="mq-sep">/</span>
         </div>
     </div>
+</section>
 
-    <!-- ======================== ABOUT ======================== -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="about-layout">
-                <div class="about-left">
-                    <span class="label" data-reveal>About Us</span>
-                    <h2 class="heading-xl" data-reveal>
-                        We are the<br><em>instrument</em> of<br>your elevation.
-                    </h2>
-                </div>
-                <div class="about-right">
-                    <div class="glass-card" data-reveal>
-                        <p>Born from a Latin root meaning "instrument of elevation," Allevamentum exists to lift startups above the noise. We combine strategic thinking with technical excellence to build products people love.</p>
-                        <p>Every pixel is purposeful. Every line of code is precise. Every decision moves you forward.</p>
-                    </div>
-                    <div class="about-metrics" data-reveal>
-                        <div class="metric">
-                            <span class="metric-num" data-count="7">0</span>
-                            <span class="metric-lbl">Years Combined<br>Experience</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-num" data-count="3">0</span>
-                            <span class="metric-lbl">Countries<br>Served</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-num">24<span class="metric-sfx">/7</span></span>
-                            <span class="metric-lbl">Support &<br>Maintenance</span>
+<!-- ====== SERVICES ====== -->
+<section class="sec sec-dark" id="services">
+    <div class="container">
+        <span class="label" data-anim="clip">What We Do</span>
+        <h2 class="heading-lg" data-anim="clip">Services built<br>for <em>growth</em></h2>
+
+        <div class="accordion">
+            <div class="acc-item" data-anim="line">
+                <button class="acc-head">
+                    <span class="acc-num">01</span>
+                    <span class="acc-title">Mobile App Development</span>
+                    <span class="acc-icon">
+                        <!-- Abstract: stacked screens -->
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                            <rect x="14" y="6" width="20" height="36" rx="4"/>
+                            <rect x="10" y="10" width="20" height="36" rx="4" opacity="0.3"/>
+                            <circle cx="24" cy="36" r="2"/>
+                        </svg>
+                    </span>
+                    <span class="acc-toggle"><span></span></span>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p>Native iOS and Android applications, cross-platform solutions with React Native and Flutter. From MVP to scale — we build apps that users love and investors notice.</p>
+                        <div class="acc-tags">
+                            <span>iOS</span><span>Android</span><span>React Native</span><span>Flutter</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ======================== SERVICES ======================== -->
-    <section class="section section-alt" id="services">
-        <div class="container">
-            <div class="section-header" data-reveal>
-                <span class="label">What We Do</span>
-                <h2 class="heading-xl">Services built<br>for <em>growth</em></h2>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card glass-card" data-reveal>
-                    <div class="service-num">01</div>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="12" y="4" width="24" height="40" rx="4"/><circle cx="24" cy="38" r="2"/><line x1="18" y1="8" x2="30" y2="8"/></svg>
-                    </div>
-                    <h3>Mobile App<br>Development</h3>
-                    <p>Native iOS & Android, cross-platform with React Native and Flutter. From MVP to scale.</p>
-                    <div class="service-tags">
-                        <span>iOS</span><span>Android</span><span>React Native</span><span>Flutter</span>
-                    </div>
-                    <div class="service-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </div>
-                </div>
-
-                <div class="service-card glass-card" data-reveal>
-                    <div class="service-num">02</div>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="40" height="28" rx="4"/><line x1="4" y1="14" x2="44" y2="14"/><circle cx="10" cy="11" r="1.5" fill="currentColor"/><circle cx="16" cy="11" r="1.5" fill="currentColor"/><line x1="4" y1="36" x2="44" y2="36"/></svg>
-                    </div>
-                    <h3>Web<br>Development</h3>
-                    <p>High-performance web applications, SaaS platforms, e-commerce, and progressive web apps.</p>
-                    <div class="service-tags">
-                        <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
-                    </div>
-                    <div class="service-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </div>
-                </div>
-
-                <div class="service-card glass-card" data-reveal>
-                    <div class="service-num">03</div>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 4L4 14v20l20 10 20-10V14L24 4z"/><path d="M4 14l20 10 20-10"/><line x1="24" y1="24" x2="24" y2="44"/></svg>
-                    </div>
-                    <h3>UI/UX<br>Design</h3>
-                    <p>User research, wireframing, prototyping, and visual design. Beautiful and intuitive interfaces.</p>
-                    <div class="service-tags">
-                        <span>Figma</span><span>Prototyping</span><span>Design Systems</span>
-                    </div>
-                    <div class="service-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </div>
-                </div>
-
-                <div class="service-card glass-card" data-reveal>
-                    <div class="service-num">04</div>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="20"/><path d="M24 4a28 28 0 0 1 0 40"/><path d="M24 4a28 28 0 0 0 0 40"/><line x1="4" y1="24" x2="44" y2="24"/></svg>
-                    </div>
-                    <h3>Strategic<br>Consulting</h3>
-                    <p>Technical architecture, product strategy, team augmentation, and CTO-as-a-service.</p>
-                    <div class="service-tags">
-                        <span>Architecture</span><span>Strategy</span><span>Augmentation</span>
-                    </div>
-                    <div class="service-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            <div class="acc-item" data-anim="line">
+                <button class="acc-head">
+                    <span class="acc-num">02</span>
+                    <span class="acc-title">Web Development</span>
+                    <span class="acc-icon">
+                        <!-- Abstract: connected nodes -->
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                            <circle cx="12" cy="12" r="4"/><circle cx="36" cy="12" r="4"/>
+                            <circle cx="12" cy="36" r="4"/><circle cx="36" cy="36" r="4"/>
+                            <circle cx="24" cy="24" r="5"/>
+                            <line x1="16" y1="12" x2="19" y2="21"/><line x1="32" y1="12" x2="29" y2="21"/>
+                            <line x1="16" y1="36" x2="19" y2="27"/><line x1="32" y1="36" x2="29" y2="27"/>
+                        </svg>
+                    </span>
+                    <span class="acc-toggle"><span></span></span>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p>High-performance web applications, SaaS platforms, e-commerce solutions, and progressive web apps built with modern frameworks for speed and scalability.</p>
+                        <div class="acc-tags">
+                            <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ======================== LARGE TEXT DIVIDER ======================== -->
-    <div class="big-text-section">
-        <div class="big-text" data-reveal>
-            <span class="big-text-outline">ELEVATE</span>
-            <span class="big-text-fill">ELEVATE</span>
+            <div class="acc-item" data-anim="line">
+                <button class="acc-head">
+                    <span class="acc-num">03</span>
+                    <span class="acc-title">UI/UX Design</span>
+                    <span class="acc-icon">
+                        <!-- Abstract: overlapping circles -->
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                            <circle cx="20" cy="20" r="12"/><circle cx="28" cy="20" r="12" opacity="0.5"/>
+                            <circle cx="24" cy="28" r="12" opacity="0.3"/>
+                        </svg>
+                    </span>
+                    <span class="acc-toggle"><span></span></span>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p>User research, wireframing, prototyping, and visual design. We create interfaces that are beautiful, intuitive, and conversion-optimized.</p>
+                        <div class="acc-tags">
+                            <span>Figma</span><span>Prototyping</span><span>Design Systems</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item" data-anim="line">
+                <button class="acc-head">
+                    <span class="acc-num">04</span>
+                    <span class="acc-title">Strategic Consulting</span>
+                    <span class="acc-icon">
+                        <!-- Abstract: ascending chart -->
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                            <polyline points="6,40 18,28 28,32 42,12"/>
+                            <polygon points="42,12 42,20 34,16" fill="currentColor" opacity="0.3"/>
+                            <circle cx="18" cy="28" r="2.5"/><circle cx="28" cy="32" r="2.5"/>
+                        </svg>
+                    </span>
+                    <span class="acc-toggle"><span></span></span>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p>Technical architecture, product strategy, team augmentation, and CTO-as-a-service. We help scaling startups make the right decisions at the right time.</p>
+                        <div class="acc-tags">
+                            <span>Architecture</span><span>Strategy</span><span>Augmentation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</section>
 
-    <!-- ======================== WORK / PORTFOLIO ======================== -->
-    <section class="section" id="work">
-        <div class="container">
-            <div class="section-header split" data-reveal>
-                <div>
-                    <span class="label">Selected Work</span>
-                    <h2 class="heading-xl">Our <em>work</em></h2>
-                </div>
-                <a href="#contact" class="link-arrow">Start a Project <span>&rarr;</span></a>
+<!-- ====== ELEVATE DIVIDER ====== -->
+<div class="elevate-section" id="elevateText">
+    <div class="elevate-word" aria-hidden="true">
+        <span class="el-char" data-i="0">E</span><span class="el-char" data-i="1">L</span><span class="el-char" data-i="2">E</span><span class="el-char" data-i="3">V</span><span class="el-char" data-i="4">A</span><span class="el-char" data-i="5">T</span><span class="el-char" data-i="6">E</span>
+    </div>
+</div>
+
+<!-- ====== WORK ====== -->
+<section class="sec" id="work">
+    <div class="container">
+        <div class="sec-header" data-anim="clip">
+            <div>
+                <span class="label">Selected Work</span>
+                <h2 class="heading-lg">Our <em>work</em></h2>
             </div>
-
-            <div class="work-grid">
-                <div class="work-card" data-reveal data-tilt>
-                    <div class="work-card-inner" style="--card-accent: #E63946">
-                        <div class="work-card-bg"></div>
-                        <div class="work-card-content">
-                            <span class="work-badge">Coming Soon</span>
-                            <h3>Project Alpha</h3>
-                            <p>Something extraordinary is in the works. Stay tuned.</p>
-                        </div>
-                        <div class="work-card-num">01</div>
-                    </div>
-                </div>
-
-                <div class="work-card" data-reveal data-tilt>
-                    <div class="work-card-inner" style="--card-accent: #9B59B6">
-                        <div class="work-card-bg"></div>
-                        <div class="work-card-content">
-                            <span class="work-badge">Coming Soon</span>
-                            <h3>Project Beta</h3>
-                            <p>We're building something that will redefine expectations.</p>
-                        </div>
-                        <div class="work-card-num">02</div>
-                    </div>
-                </div>
-            </div>
+            <a href="#contact" class="arrow-link">Start a Project <span>&rarr;</span></a>
         </div>
-    </section>
 
-    <!-- ======================== TECH STACK ======================== -->
-    <section class="section section-alt" id="tech">
-        <div class="container">
-            <div class="section-header center" data-reveal>
-                <span class="label">Technology</span>
-                <h2 class="heading-xl">Our <em>stack</em></h2>
-            </div>
-            <div class="tech-cloud" data-reveal>
-                <div class="tech-pill" style="--i:0">React</div>
-                <div class="tech-pill" style="--i:1">Swift</div>
-                <div class="tech-pill" style="--i:2">Kotlin</div>
-                <div class="tech-pill" style="--i:3">Node.js</div>
-                <div class="tech-pill" style="--i:4">Python</div>
-                <div class="tech-pill" style="--i:5">TypeScript</div>
-                <div class="tech-pill" style="--i:6">Flutter</div>
-                <div class="tech-pill" style="--i:7">AWS</div>
-                <div class="tech-pill" style="--i:8">Docker</div>
-                <div class="tech-pill" style="--i:9">Figma</div>
-                <div class="tech-pill" style="--i:10">Next.js</div>
-                <div class="tech-pill" style="--i:11">PostgreSQL</div>
-                <div class="tech-pill" style="--i:12">GraphQL</div>
-                <div class="tech-pill" style="--i:13">Firebase</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== TESTIMONIALS ======================== -->
-    <section class="section" id="testimonials">
-        <div class="container">
-            <div class="section-header center" data-reveal>
-                <span class="label">Testimonials</span>
-                <h2 class="heading-xl">What clients <em>say</em></h2>
-            </div>
-
-            <div class="testimonials" id="testimonialSlider">
-                <div class="testimonial-card glass-card active" data-index="0">
-                    <div class="testimonial-quote-mark">&ldquo;</div>
-                    <blockquote>Allevamentum didn't just build our app — they elevated our entire product vision. The team's technical expertise and strategic thinking were instrumental in our Series A raise.</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">JM</div>
-                        <div>
-                            <strong>James Mitchell</strong>
-                            <span>CEO, FinFlow</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card glass-card" data-index="1">
-                    <div class="testimonial-quote-mark">&ldquo;</div>
-                    <blockquote>Working with Allevamentum felt like having an in-house team. Their communication, code quality, and design sense are world-class.</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">RP</div>
-                        <div>
-                            <strong>Rachel Park</strong>
-                            <span>CTO, NexaHealth</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card glass-card" data-index="2">
-                    <div class="testimonial-quote-mark">&ldquo;</div>
-                    <blockquote>The precision and attention to detail is unlike anything I've experienced. They turned our rough concept into a product that users genuinely love.</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">TW</div>
-                        <div>
-                            <strong>Thomas Wright</strong>
-                            <span>Founder, Artisan Market</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-nav">
-                <button class="t-btn" id="prevTest" aria-label="Previous">&larr;</button>
-                <div class="t-dots" id="tDots">
-                    <span class="t-dot active"></span>
-                    <span class="t-dot"></span>
-                    <span class="t-dot"></span>
-                </div>
-                <button class="t-btn" id="nextTest" aria-label="Next">&rarr;</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== CTA / CONTACT ======================== -->
-    <section class="section section-cta" id="contact">
-        <div class="container">
-            <div class="cta-layout">
-                <div class="cta-left">
-                    <span class="label" data-reveal>Start a Project</span>
-                    <h2 class="heading-xxl" data-reveal>Ready to<br><span class="glow">elevate</span>?</h2>
-                    <p class="cta-desc" data-reveal>Tell us about your vision. We'll show you how to get there.</p>
-                    <div class="cta-info" data-reveal>
-                        <div class="cta-info-row">
-                            <span class="cta-info-label">Email</span>
-                            <a href="mailto:hello@allevamentum.com">hello@allevamentum.com</a>
-                        </div>
-                        <div class="cta-info-row">
-                            <span class="cta-info-label">Location</span>
-                            <span>Worldwide, Remote-first</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="cta-right" data-reveal>
-                    <form class="contact-form glass-card" id="contactForm">
-                        <div class="form-field">
-                            <input type="text" id="fName" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-field">
-                            <input type="email" id="fEmail" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-field">
-                            <select id="fService" required>
-                                <option value="" disabled selected>Select a service</option>
-                                <option>Mobile App Development</option>
-                                <option>Web Development</option>
-                                <option>UI/UX Design</option>
-                                <option>Strategic Consulting</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div class="form-field">
-                            <textarea id="fMsg" rows="4" placeholder="Tell us about your project" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">
-                            <span>Send Message</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== FOOTER ======================== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <svg width="40" height="40" viewBox="0 0 100 100">
-                        <polygon points="50,8 92,92 8,92" fill="none" stroke="#E63946" stroke-width="2"/>
-                        <polygon points="50,28 78,82 22,82" fill="none" stroke="#E63946" stroke-width="2"/>
-                        <polygon points="50,48 64,72 36,72" fill="#E63946"/>
+        <div class="work-grid">
+            <div class="work-card" data-anim="fade" data-tilt>
+                <div class="wc-inner">
+                    <!-- Abstract SVG background -->
+                    <svg class="wc-art" viewBox="0 0 600 400" fill="none" aria-hidden="true">
+                        <defs>
+                            <radialGradient id="wg1" cx="30%" cy="30%"><stop offset="0%" stop-color="#E63946" stop-opacity="0.08"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+                        </defs>
+                        <rect width="600" height="400" fill="url(#wg1)"/>
+                        <polygon points="100,350 300,80 500,350" fill="none" stroke="#E63946" stroke-width="0.5" opacity="0.15"/>
+                        <polygon points="150,350 300,140 450,350" fill="none" stroke="#E63946" stroke-width="0.5" opacity="0.1"/>
+                        <polygon points="200,350 300,200 400,350" fill="#E63946" opacity="0.03"/>
+                        <circle cx="300" cy="180" r="60" stroke="#E63946" stroke-width="0.3" opacity="0.1"/>
+                        <circle cx="300" cy="180" r="100" stroke="#E63946" stroke-width="0.3" opacity="0.05"/>
                     </svg>
-                    <div>
-                        <span class="footer-name">ALLEVAMENTUM</span>
-                        <span class="footer-tagline">Instrument of Elevation</span>
+                    <div class="wc-content">
+                        <span class="wc-badge">Coming Soon</span>
+                        <h3>Project Alpha</h3>
+                        <p>Something extraordinary is in the works.</p>
                     </div>
-                </div>
-                <div class="footer-cols">
-                    <div class="footer-col">
-                        <h4>Navigation</h4>
-                        <a href="#about">About</a>
-                        <a href="#services">Services</a>
-                        <a href="#work">Work</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Connect</h4>
-                        <a href="#">LinkedIn</a>
-                        <a href="#">Twitter</a>
-                        <a href="#">Dribbble</a>
-                        <a href="#">GitHub</a>
-                    </div>
+                    <span class="wc-num">01</span>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 Allevamentum. All rights reserved.</span>
-                <span class="footer-latin">Instrumentum Elevationis</span>
+
+            <div class="work-card" data-anim="fade" data-tilt>
+                <div class="wc-inner">
+                    <svg class="wc-art" viewBox="0 0 600 400" fill="none" aria-hidden="true">
+                        <defs>
+                            <radialGradient id="wg2" cx="70%" cy="30%"><stop offset="0%" stop-color="#9B59B6" stop-opacity="0.08"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+                        </defs>
+                        <rect width="600" height="400" fill="url(#wg2)"/>
+                        <circle cx="300" cy="200" r="120" stroke="#9B59B6" stroke-width="0.5" opacity="0.1"/>
+                        <circle cx="300" cy="200" r="80" stroke="#9B59B6" stroke-width="0.5" opacity="0.12"/>
+                        <circle cx="300" cy="200" r="40" fill="#9B59B6" opacity="0.03"/>
+                        <line x1="180" y1="200" x2="420" y2="200" stroke="#9B59B6" stroke-width="0.3" opacity="0.1"/>
+                        <line x1="300" y1="80" x2="300" y2="320" stroke="#9B59B6" stroke-width="0.3" opacity="0.1"/>
+                    </svg>
+                    <div class="wc-content">
+                        <span class="wc-badge" style="border-color:rgba(155,89,182,0.4);color:#9B59B6">Coming Soon</span>
+                        <h3>Project Beta</h3>
+                        <p>Redefining expectations, one interaction at a time.</p>
+                    </div>
+                    <span class="wc-num">02</span>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script src="website.js"></script>
+<!-- ====== TECH ====== -->
+<section class="sec sec-dark" id="tech">
+    <div class="container">
+        <div class="sec-header center" data-anim="clip">
+            <span class="label">Technology</span>
+            <h2 class="heading-lg">Our <em>stack</em></h2>
+        </div>
+        <div class="tech-wrap" data-anim="fade">
+            <div class="t-pill" style="--d:0">React</div>
+            <div class="t-pill" style="--d:1">Swift</div>
+            <div class="t-pill" style="--d:2">Kotlin</div>
+            <div class="t-pill" style="--d:3">Node.js</div>
+            <div class="t-pill" style="--d:4">Python</div>
+            <div class="t-pill" style="--d:5">TypeScript</div>
+            <div class="t-pill" style="--d:6">Flutter</div>
+            <div class="t-pill" style="--d:7">AWS</div>
+            <div class="t-pill" style="--d:8">Docker</div>
+            <div class="t-pill" style="--d:9">Figma</div>
+            <div class="t-pill" style="--d:10">Next.js</div>
+            <div class="t-pill" style="--d:11">PostgreSQL</div>
+            <div class="t-pill" style="--d:12">GraphQL</div>
+            <div class="t-pill" style="--d:13">Firebase</div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== TESTIMONIALS ====== -->
+<section class="sec" id="testimonials">
+    <div class="container">
+        <div class="sec-header center" data-anim="clip">
+            <span class="label">Testimonials</span>
+            <h2 class="heading-lg">What clients <em>say</em></h2>
+        </div>
+
+        <div class="testi-wrap">
+            <div class="testi-card active" data-idx="0">
+                <span class="testi-mark">&ldquo;</span>
+                <blockquote>Allevamentum didn't just build our app — they elevated our entire product vision. The team's technical expertise and strategic thinking were instrumental in our Series A raise.</blockquote>
+                <div class="testi-who">
+                    <div class="testi-av">JM</div>
+                    <div><strong>James Mitchell</strong><span>CEO, FinFlow</span></div>
+                </div>
+            </div>
+            <div class="testi-card" data-idx="1">
+                <span class="testi-mark">&ldquo;</span>
+                <blockquote>Working with Allevamentum felt like having an in-house team. Communication, code quality, and design sense — all world-class.</blockquote>
+                <div class="testi-who">
+                    <div class="testi-av">RP</div>
+                    <div><strong>Rachel Park</strong><span>CTO, NexaHealth</span></div>
+                </div>
+            </div>
+            <div class="testi-card" data-idx="2">
+                <span class="testi-mark">&ldquo;</span>
+                <blockquote>The precision and attention to detail is unlike anything I've experienced. They turned our rough concept into a product users genuinely love.</blockquote>
+                <div class="testi-who">
+                    <div class="testi-av">TW</div>
+                    <div><strong>Thomas Wright</strong><span>Founder, Artisan Market</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="testi-nav">
+            <button class="tn-btn" id="tPrev">&larr;</button>
+            <div class="tn-dots"><span class="tn-dot on"></span><span class="tn-dot"></span><span class="tn-dot"></span></div>
+            <button class="tn-btn" id="tNext">&rarr;</button>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="sec sec-cta" id="contact">
+    <div class="container">
+        <div class="cta-grid">
+            <div class="cta-left">
+                <span class="label" data-anim="clip">Start a Project</span>
+                <h2 class="heading-xxl" data-anim="clip">Ready to<br><em>elevate</em>?</h2>
+                <p class="cta-desc" data-anim="fade">Tell us about your vision. We'll show you how to get there.</p>
+                <div class="cta-info" data-anim="fade">
+                    <div><span class="cta-info-l">Email</span><a href="mailto:hello@allevamentum.com">hello@allevamentum.com</a></div>
+                    <div><span class="cta-info-l">Location</span><span>Worldwide, Remote-first</span></div>
+                </div>
+            </div>
+            <div class="cta-right" data-anim="fade">
+                <form class="form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <select required>
+                        <option value="" disabled selected>Select a service</option>
+                        <option>Mobile App Development</option>
+                        <option>Web Development</option>
+                        <option>UI/UX Design</option>
+                        <option>Strategic Consulting</option>
+                        <option>Other</option>
+                    </select>
+                    <textarea rows="4" placeholder="Tell us about your project" required></textarea>
+                    <button type="submit" class="btn">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+    <div class="container">
+        <div class="ft-top">
+            <div class="ft-brand">
+                <svg width="36" height="36" viewBox="0 0 100 100">
+                    <polygon points="50,8 92,92 8,92" fill="none" stroke="#E63946" stroke-width="2"/>
+                    <polygon points="50,28 78,82 22,82" fill="none" stroke="#E63946" stroke-width="2"/>
+                    <polygon points="50,44 66,74 34,74" fill="#E63946"/>
+                </svg>
+                <div><span class="ft-name">ALLEVAMENTUM</span><span class="ft-tag">Instrument of Elevation</span></div>
+            </div>
+            <div class="ft-cols">
+                <div class="ft-col">
+                    <h4>Navigate</h4>
+                    <a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#contact">Contact</a>
+                </div>
+                <div class="ft-col">
+                    <h4>Connect</h4>
+                    <a href="#">LinkedIn</a><a href="#">Twitter</a><a href="#">Dribbble</a><a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="ft-bottom">
+            <span>&copy; 2026 Allevamentum. All rights reserved.</span>
+            <span class="ft-latin">Instrumentum Elevationis</span>
+        </div>
+    </div>
+</footer>
+
+</main>
+
+<script src="website.js"></script>
 </body>
 </html>
