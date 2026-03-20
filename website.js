@@ -1,7 +1,7 @@
 /* ============================================
-   ALLEVAMENTUM — Premium Interactions v5
-   Dark gray, multi-accent, background particles,
-   soft scrolling, magnetic buttons, 3D tilt
+   ALLEVAMENTUM — Premium Interactions v6
+   Apple-style scroll, blur reveals, scale cards,
+   shimmer buttons, scroll progress, spring physics
    ============================================ */
 
 (function(){
@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => initLoader());
 
 function boot() {
     initSmoothScroll();
+    initScrollProgress();
     initCursor();
     initNav();
     initMobileMenu();
@@ -54,6 +55,20 @@ function initSmoothScroll() {
         main.style.transform = `translate3d(0,${-smoothY}px,0)`;
         requestAnimationFrame(tick);
     })();
+}
+
+/* ===================== SCROLL PROGRESS ===================== */
+function initScrollProgress() {
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+
+    function update() {
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+        bar.style.width = progress + '%';
+        requestAnimationFrame(update);
+    }
+    update();
 }
 
 /* ===================== CURSOR ===================== */
@@ -187,10 +202,10 @@ function initHeroDotGrid() {
     const connectionRadius = 65;
 
     const dotColors = [
-        [79, 125, 247],   // accent blue
-        [139, 108, 247],  // accent purple
-        [45, 212, 191],   // teal
-        [245, 166, 35],   // warm amber
+        [79, 125, 247],
+        [139, 108, 247],
+        [45, 212, 191],
+        [245, 166, 35],
     ];
 
     function generateDots() {
@@ -261,7 +276,6 @@ function initHeroDotGrid() {
             }
         }
 
-        // Connect activated dots
         for (let i = 0; i < activeDots.length; i++) {
             for (let j = i + 1; j < activeDots.length; j++) {
                 const a = activeDots[i], b = activeDots[j];
@@ -278,7 +292,6 @@ function initHeroDotGrid() {
             }
         }
 
-        // Brand triangle constellation
         const cx = w * 0.5, cy = h * 0.38;
         const triSize = Math.min(w, h) * 0.16;
         const triAlpha = 0.012 + Math.sin(time * 0.5) * 0.004;
@@ -322,10 +335,10 @@ function initBackgroundParticles() {
     window.addEventListener('resize', resize);
 
     const colors = [
-        [79, 125, 247],   // blue
-        [139, 108, 247],  // purple
-        [45, 212, 191],   // teal
-        [245, 166, 35],   // amber
+        [79, 125, 247],
+        [139, 108, 247],
+        [45, 212, 191],
+        [245, 166, 35],
     ];
 
     const particleCount = 50;
@@ -357,7 +370,6 @@ function initBackgroundParticles() {
             p.y += p.vy;
             p.rotation += p.rotSpeed;
 
-            // Wrap around edges
             if (p.x < -10) p.x = w + 10;
             if (p.x > w + 10) p.x = -10;
             if (p.y < -10) p.y = h + 10;
@@ -475,10 +487,10 @@ function initTilt() {
             const r = card.getBoundingClientRect();
             const x = (e.clientX - r.left) / r.width - 0.5;
             const y = (e.clientY - r.top) / r.height - 0.5;
-            card.style.transform = `perspective(800px) rotateX(${y * -6}deg) rotateY(${x * 6}deg) translateY(-6px)`;
+            card.style.transform = `perspective(800px) rotateX(${y * -6}deg) rotateY(${x * 6}deg) translateY(-8px) scale(1.01)`;
         });
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+            card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0) scale(1)';
         });
     });
 }

@@ -26,6 +26,9 @@
     </div>
 </div>
 
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <!-- CURSOR -->
 <div class="cur" id="cur"></div>
 <div class="cur-ring" id="curRing"></div>
@@ -155,20 +158,23 @@
     </div>
 </div>
 
+<!-- SECTION DIVIDER -->
+<div class="sec-divider" data-anim="line"></div>
+
 <!-- ABOUT / WHY US -->
 <section class="sec" id="about">
     <div class="container">
         <div class="about-grid">
             <div class="about-left">
-                <span class="label" data-anim="clip">Why Allevamentum</span>
-                <h2 class="heading-lg" data-anim="clip">
+                <span class="label" data-anim="blur">Why Allevamentum</span>
+                <h2 class="heading-lg" data-anim="blur">
                     Your product deserves<br>an unfair <em>advantage</em>
                 </h2>
                 <p class="about-lead" data-anim="fade">We're not another dev shop. We're the strategic partner that turns your vision into a market-leading product — with the code, design, and strategy to back it up.</p>
             </div>
             <div class="about-right" data-anim="fade">
                 <div class="advantage-list">
-                    <div class="adv-item" data-glow>
+                    <div class="adv-item" data-glow data-anim="scale">
                         <div class="glow-card-border"></div>
                         <div class="adv-inner">
                             <div class="adv-num">01</div>
@@ -178,7 +184,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="adv-item" data-glow>
+                    <div class="adv-item" data-glow data-anim="scale">
                         <div class="glow-card-border"></div>
                         <div class="adv-inner">
                             <div class="adv-num">02</div>
@@ -188,7 +194,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="adv-item" data-glow>
+                    <div class="adv-item" data-glow data-anim="scale">
                         <div class="glow-card-border"></div>
                         <div class="adv-inner">
                             <div class="adv-num">03</div>
@@ -198,7 +204,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="adv-item" data-glow>
+                    <div class="adv-item" data-glow data-anim="scale">
                         <div class="glow-card-border"></div>
                         <div class="adv-inner">
                             <div class="adv-num">04</div>
@@ -221,10 +227,13 @@
     </div>
 </div>
 
+<!-- SECTION DIVIDER -->
+<div class="sec-divider" data-anim="line"></div>
+
 <!-- SERVICES -->
 <section class="sec" id="services">
     <div class="container">
-        <div class="sec-header" data-anim="clip">
+        <div class="sec-header" data-anim="blur">
             <div>
                 <span class="label">What We Build</span>
                 <h2 class="heading-lg">Services that move<br>the <em>needle</em></h2>
@@ -232,7 +241,7 @@
         </div>
 
         <div class="services-grid">
-            <div class="service-card" data-glow data-anim="fade" data-tilt>
+            <div class="service-card" data-glow data-anim="scale" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
                     <div class="sc-top">
@@ -250,7 +259,7 @@
                     <div class="sc-tags"><span>iOS</span><span>Android</span><span>React Native</span><span>Flutter</span></div>
                 </div>
             </div>
-            <div class="service-card" data-glow data-anim="fade" data-tilt>
+            <div class="service-card" data-glow data-anim="scale" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
                     <div class="sc-top">
@@ -269,7 +278,7 @@
                     <div class="sc-tags"><span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span></div>
                 </div>
             </div>
-            <div class="service-card" data-glow data-anim="fade" data-tilt>
+            <div class="service-card" data-glow data-anim="scale" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
                     <div class="sc-top">
@@ -287,7 +296,7 @@
                     <div class="sc-tags"><span>Figma</span><span>Prototyping</span><span>Design Systems</span><span>UX Research</span></div>
                 </div>
             </div>
-            <div class="service-card" data-glow data-anim="fade" data-tilt>
+            <div class="service-card" data-glow data-anim="scale" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
                     <div class="sc-top">
@@ -313,19 +322,19 @@
 <div class="metrics-banner">
     <div class="container">
         <div class="mb-grid">
-            <div class="mb-item" data-anim="fade">
+            <div class="mb-item" data-anim="scale">
                 <span class="mb-n" data-count="99">0</span><span class="mb-s">%</span>
                 <span class="mb-l">Uptime SLA</span>
             </div>
-            <div class="mb-item" data-anim="fade">
+            <div class="mb-item" data-anim="scale">
                 <span class="mb-n" data-count="90">0</span><span class="mb-s">+</span>
                 <span class="mb-l">Lighthouse Scores</span>
             </div>
-            <div class="mb-item" data-anim="fade">
+            <div class="mb-item" data-anim="scale">
                 <span class="mb-n" data-count="2">0</span><span class="mb-s">wk</span>
                 <span class="mb-l">Avg. Sprint Cycle</span>
             </div>
-            <div class="mb-item" data-anim="fade">
+            <div class="mb-item" data-anim="scale">
                 <span class="mb-n" data-count="24">0</span><span class="mb-s">/7</span>
                 <span class="mb-l">Support Coverage</span>
             </div>
@@ -336,12 +345,12 @@
 <!-- PROCESS -->
 <section class="sec" id="process">
     <div class="container">
-        <div class="sec-header center" data-anim="clip">
+        <div class="sec-header center" data-anim="blur">
             <span class="label">How We Work</span>
             <h2 class="heading-lg">A proven path<br>from idea to <em>impact</em></h2>
         </div>
         <div class="process-grid">
-            <div class="proc-card" data-glow data-anim="fade">
+            <div class="proc-card" data-glow data-anim="scale">
                 <div class="glow-card-border"></div>
                 <div class="proc-inner">
                     <div class="proc-step">01</div>
@@ -350,7 +359,7 @@
                     <p>Deep-dive into your market, users, and goals. We map the opportunity before writing a line of code.</p>
                 </div>
             </div>
-            <div class="proc-card" data-glow data-anim="fade">
+            <div class="proc-card" data-glow data-anim="scale">
                 <div class="glow-card-border"></div>
                 <div class="proc-inner">
                     <div class="proc-step">02</div>
@@ -359,7 +368,7 @@
                     <p>Interactive prototypes, validated with real users. Every screen is tested before it's built.</p>
                 </div>
             </div>
-            <div class="proc-card" data-glow data-anim="fade">
+            <div class="proc-card" data-glow data-anim="scale">
                 <div class="glow-card-border"></div>
                 <div class="proc-inner">
                     <div class="proc-step">03</div>
@@ -368,7 +377,7 @@
                     <p>Agile sprints, CI/CD pipelines, code reviews. Production-grade code from sprint one.</p>
                 </div>
             </div>
-            <div class="proc-card" data-glow data-anim="fade">
+            <div class="proc-card" data-glow data-anim="scale">
                 <div class="glow-card-border"></div>
                 <div class="proc-inner">
                     <div class="proc-step">04</div>
@@ -381,10 +390,13 @@
     </div>
 </section>
 
+<!-- SECTION DIVIDER -->
+<div class="sec-divider" data-anim="line"></div>
+
 <!-- TECH -->
 <section class="sec sec-dark" id="tech">
     <div class="container">
-        <div class="sec-header center" data-anim="clip">
+        <div class="sec-header center" data-anim="blur">
             <span class="label">Technology</span>
             <h2 class="heading-lg">Battle-tested <em>stack</em></h2>
             <p class="tech-sub" data-anim="fade">We use the best tools for the job — never the trendiest. Every choice is optimized for performance, scalability, and developer velocity.</p>
@@ -434,15 +446,15 @@
     <div class="container">
         <div class="cta-grid">
             <div class="cta-left">
-                <span class="label" data-anim="clip">Let's Build</span>
-                <h2 class="heading-xxl" data-anim="clip">Ready to<br><em>dominate</em>?</h2>
+                <span class="label" data-anim="blur">Let's Build</span>
+                <h2 class="heading-xxl" data-anim="blur">Ready to<br><em>dominate</em>?</h2>
                 <p class="cta-desc" data-anim="fade">Tell us about your vision. We'll show you the fastest path to market leadership.</p>
                 <div class="cta-info" data-anim="fade">
                     <div><span class="cta-info-l">Email</span><a href="mailto:hello@allevamentum.com">hello@allevamentum.com</a></div>
                     <div><span class="cta-info-l">Availability</span><span>Accepting 2 new projects for Q2</span></div>
                 </div>
             </div>
-            <div class="cta-right" data-anim="fade">
+            <div class="cta-right" data-anim="scale">
                 <div class="form-card" data-glow>
                     <div class="glow-card-border"></div>
                     <form class="form" id="contactForm">
@@ -457,7 +469,7 @@
                             <option>Full Product Build</option>
                         </select>
                         <textarea rows="4" placeholder="Tell us about your project and timeline" required></textarea>
-                        <button type="submit" class="btn" data-magnetic>
+                        <button type="submit" class="btn btn-shimmer" data-magnetic>
                             <span>Send Message</span>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </button>
