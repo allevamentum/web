@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALLEVAMENTUM — Instrument of Elevation</title>
-    <meta name="description" content="Full-service digital agency crafting exceptional mobile apps, web platforms, and strategic solutions for ambitious startups.">
+    <meta name="description" content="Premium digital agency crafting world-class mobile apps, web platforms, and strategic solutions for ambitious startups and scale-ups.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<!-- ====== PRELOADER ====== -->
+<!-- PRELOADER -->
 <div class="loader" id="loader">
     <div class="loader-inner">
         <svg class="loader-mark" viewBox="0 0 100 100" width="60" height="60">
@@ -25,32 +25,34 @@
     </div>
 </div>
 
-<!-- ====== CURSOR ====== -->
+<!-- CURSOR -->
 <div class="cur" id="cur"></div>
 <div class="cur-ring" id="curRing"></div>
 
-<!-- ====== GRAIN ====== -->
+<!-- GRAIN -->
 <div class="grain"></div>
 
-<!-- ====== NAV ====== -->
+<!-- NAV -->
 <nav class="nav" id="nav">
     <div class="nav-inner">
         <a href="#" class="nav-logo" aria-label="Home">
             <svg viewBox="0 0 100 100" width="32" height="32">
-                <polygon points="50,8 92,92 8,92" fill="none" stroke="currentColor" stroke-width="3"/>
-                <polygon points="50,28 78,82 22,82" fill="none" stroke="currentColor" stroke-width="3"/>
-                <polygon points="50,44 66,74 34,74" fill="currentColor"/>
+                <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F7DF7"/><stop offset="100%" stop-color="#8B6CF7"/></linearGradient></defs>
+                <polygon points="50,8 92,92 8,92" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                <polygon points="50,28 78,82 22,82" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                <polygon points="50,44 66,74 34,74" fill="url(#logoGrad)"/>
             </svg>
         </a>
-        <div class="nav-center" id="navLinks">
+        <div class="nav-center">
             <a href="#about" class="nav-link">About</a>
             <a href="#services" class="nav-link">Services</a>
-            <a href="#work" class="nav-link">Work</a>
+            <a href="#process" class="nav-link">Process</a>
+            <a href="#tech" class="nav-link">Technology</a>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <a href="#contact" class="nav-cta">
+        <a href="#contact" class="nav-cta magnetic" data-magnetic>
             <span class="nav-cta-dot"></span>
-            Start a Project
+            Get in Touch
         </a>
         <button class="burger" id="burger" aria-label="Menu">
             <span class="burger-line"></span>
@@ -59,62 +61,60 @@
     </div>
 </nav>
 
-<!-- ====== MOBILE NAV ====== -->
+<!-- MOBILE NAV -->
 <div class="mob-nav" id="mobNav">
     <div class="mob-nav-inner">
         <a href="#about" class="mob-link">About</a>
         <a href="#services" class="mob-link">Services</a>
-        <a href="#work" class="mob-link">Work</a>
+        <a href="#process" class="mob-link">Process</a>
+        <a href="#tech" class="mob-link">Technology</a>
         <a href="#contact" class="mob-link">Contact</a>
-        <div class="mob-info">
-            <span>hello@allevamentum.com</span>
-        </div>
+        <div class="mob-info"><span>hello@allevamentum.com</span></div>
     </div>
 </div>
 
-<!-- ====== SCROLL WRAPPER ====== -->
+<!-- SCROLL WRAPPER -->
 <main id="smooth">
 
-<!-- ====== HERO ====== -->
+<!-- HERO -->
 <section class="hero" id="hero">
     <canvas class="hero-canvas" id="heroCanvas"></canvas>
-    <div class="hero-glow"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
     <div class="hero-fade"></div>
 
     <div class="hero-content container">
         <div class="hero-badge" data-anim="clip" data-delay="0">
             <span class="badge-dot"></span>
-            Digital Agency &mdash; Est. 2026
+            Premium Digital Agency
         </div>
 
-        <h1 class="hero-h1">
+        <h1 class="hero-h1" id="heroH1">
             <span class="h1-line" data-anim="clip" data-delay="1">
-                <span class="h1-word">We craft</span>
+                <span class="h1-word">We don't build</span>
             </span>
             <span class="h1-line" data-anim="clip" data-delay="2">
-                <span class="h1-word h1-gradient">digital</span>
-                <span class="h1-word">experiences</span>
+                <span class="h1-word">websites. We build</span>
             </span>
             <span class="h1-line" data-anim="clip" data-delay="3">
-                <span class="h1-word">that</span>
-                <span class="h1-word h1-accent">elevate</span>
+                <span class="h1-word h1-accent">revenue machines.</span>
             </span>
         </h1>
 
         <div class="hero-foot" data-anim="fade" data-delay="4">
-            <p class="hero-desc">We partner with ambitious startups to build world-class mobile apps, web platforms, and strategic digital solutions.</p>
+            <p class="hero-desc">Strategy-driven development for startups that refuse to be average. From concept to market dominance.</p>
             <div class="hero-stats">
                 <div class="h-stat">
                     <span class="h-stat-n" data-count="50">0</span><span class="h-stat-s">+</span>
-                    <span class="h-stat-l">Projects Delivered</span>
+                    <span class="h-stat-l">Projects Shipped</span>
                 </div>
                 <div class="h-stat">
                     <span class="h-stat-n" data-count="98">0</span><span class="h-stat-s">%</span>
-                    <span class="h-stat-l">Client Satisfaction</span>
+                    <span class="h-stat-l">Client Retention</span>
                 </div>
                 <div class="h-stat">
-                    <span class="h-stat-n" data-count="5">0</span><span class="h-stat-s">.0</span>
-                    <span class="h-stat-l">Average Rating</span>
+                    <span class="h-stat-n" data-count="3">0</span><span class="h-stat-s">x</span>
+                    <span class="h-stat-l">Avg. ROI Multiplier</span>
                 </div>
             </div>
         </div>
@@ -122,71 +122,81 @@
 
     <div class="scroll-hint" data-anim="fade" data-delay="5">
         <div class="scroll-line"></div>
-        <span>Scroll to explore</span>
+        <span>Explore</span>
     </div>
 </section>
 
-<!-- ====== MARQUEE ====== -->
+<!-- MARQUEE -->
 <div class="marquee">
     <div class="marquee-track">
         <div class="marquee-inner">
-            <span>App Development</span><span class="mq-sep">/</span>
-            <span>UI/UX Design</span><span class="mq-sep">/</span>
-            <span>Web Platforms</span><span class="mq-sep">/</span>
-            <span>Software Consulting</span><span class="mq-sep">/</span>
-            <span>Digital Strategy</span><span class="mq-sep">/</span>
-            <span>Brand Identity</span><span class="mq-sep">/</span>
-            <span>App Development</span><span class="mq-sep">/</span>
-            <span>UI/UX Design</span><span class="mq-sep">/</span>
-            <span>Web Platforms</span><span class="mq-sep">/</span>
-            <span>Software Consulting</span><span class="mq-sep">/</span>
-            <span>Digital Strategy</span><span class="mq-sep">/</span>
-            <span>Brand Identity</span><span class="mq-sep">/</span>
+            <span>App Development</span><span class="mq-sep">&mdash;</span>
+            <span>UI/UX Design</span><span class="mq-sep">&mdash;</span>
+            <span>Web Platforms</span><span class="mq-sep">&mdash;</span>
+            <span>Software Consulting</span><span class="mq-sep">&mdash;</span>
+            <span>Digital Strategy</span><span class="mq-sep">&mdash;</span>
+            <span>Brand Systems</span><span class="mq-sep">&mdash;</span>
+            <span>App Development</span><span class="mq-sep">&mdash;</span>
+            <span>UI/UX Design</span><span class="mq-sep">&mdash;</span>
+            <span>Web Platforms</span><span class="mq-sep">&mdash;</span>
+            <span>Software Consulting</span><span class="mq-sep">&mdash;</span>
+            <span>Digital Strategy</span><span class="mq-sep">&mdash;</span>
+            <span>Brand Systems</span><span class="mq-sep">&mdash;</span>
         </div>
     </div>
 </div>
 
-<!-- ====== ABOUT ====== -->
+<!-- ABOUT / WHY US -->
 <section class="sec" id="about">
     <div class="container">
         <div class="about-grid">
             <div class="about-left">
-                <span class="label" data-anim="clip">About Us</span>
+                <span class="label" data-anim="clip">Why Allevamentum</span>
                 <h2 class="heading-lg" data-anim="clip">
-                    The <em>instrument</em><br>of your elevation
+                    Your product deserves<br>an unfair <em>advantage</em>
                 </h2>
-                <p class="about-lead" data-anim="fade">Born from the Latin roots <em>allevare</em> (to elevate) and <em>mentum</em> (instrument), we exist to lift ambitious startups above the noise.</p>
+                <p class="about-lead" data-anim="fade">We're not another dev shop. We're the strategic partner that turns your vision into a market-leading product — with the code, design, and strategy to back it up.</p>
             </div>
             <div class="about-right" data-anim="fade">
-                <div class="about-cards">
-                    <div class="glow-card" data-glow>
+                <div class="advantage-list">
+                    <div class="adv-item" data-glow>
                         <div class="glow-card-border"></div>
-                        <div class="glow-card-content">
-                            <div class="gc-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <div class="adv-inner">
+                            <div class="adv-num">01</div>
+                            <div class="adv-text">
+                                <h3>Startup DNA</h3>
+                                <p>We think like founders. Every feature is tied to a business outcome, not just a spec.</p>
                             </div>
-                            <h3>Full-Cycle Development</h3>
-                            <p>From concept to launch and beyond. We handle every layer of your digital product.</p>
                         </div>
                     </div>
-                    <div class="glow-card" data-glow>
+                    <div class="adv-item" data-glow>
                         <div class="glow-card-border"></div>
-                        <div class="glow-card-content">
-                            <div class="gc-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <div class="adv-inner">
+                            <div class="adv-num">02</div>
+                            <div class="adv-text">
+                                <h3>Full-Cycle Ownership</h3>
+                                <p>From architecture to App Store. One team, zero handoff chaos, total accountability.</p>
                             </div>
-                            <h3>Global Perspective</h3>
-                            <p>Remote-first team serving clients across 3 countries with 24/7 support.</p>
                         </div>
                     </div>
-                    <div class="glow-card" data-glow>
+                    <div class="adv-item" data-glow>
                         <div class="glow-card-border"></div>
-                        <div class="glow-card-content">
-                            <div class="gc-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <div class="adv-inner">
+                            <div class="adv-num">03</div>
+                            <div class="adv-text">
+                                <h3>Obsessive Quality</h3>
+                                <p>Pixel-perfect UI, 90+ Lighthouse scores, zero-downtime deploys. We don't ship "good enough."</p>
                             </div>
-                            <h3>Excellence First</h3>
-                            <p>Every pixel purposeful. Every line of code precise. Every decision moves you forward.</p>
+                        </div>
+                    </div>
+                    <div class="adv-item" data-glow>
+                        <div class="glow-card-border"></div>
+                        <div class="adv-inner">
+                            <div class="adv-num">04</div>
+                            <div class="adv-text">
+                                <h3>Scale-Ready Code</h3>
+                                <p>Built for growth from day one. When your user base 10x's, your product won't blink.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -195,102 +205,108 @@
     </div>
 </section>
 
-<!-- ====== SCROLL TEXT ====== -->
+<!-- SCROLL TEXT -->
 <div class="scroll-text-section" id="scrollText">
     <div class="container">
-        <p class="scroll-text" data-scroll-color>We don't just build software. We architect digital experiences that <em>transform</em> how people interact with your brand, drive <em>measurable growth</em>, and set new standards for what's possible.</p>
+        <p class="scroll-text" data-scroll-color>We architect digital experiences that <em>transform</em> how people interact with your brand, drive <em>measurable growth</em>, and set new standards for what's possible in your industry.</p>
     </div>
 </div>
 
-<!-- ====== SERVICES ====== -->
+<!-- SERVICES -->
 <section class="sec" id="services">
     <div class="container">
-        <span class="label" data-anim="clip">What We Do</span>
-        <h2 class="heading-lg" data-anim="clip">Services designed<br>for <em>scale</em></h2>
+        <div class="sec-header" data-anim="clip">
+            <div>
+                <span class="label">What We Build</span>
+                <h2 class="heading-lg">Services that move<br>the <em>needle</em></h2>
+            </div>
+        </div>
 
         <div class="services-grid">
-            <div class="service-card" data-glow data-anim="fade">
+            <div class="service-card" data-glow data-anim="fade" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
-                    <span class="sc-num">01</span>
-                    <div class="sc-icon">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                            <rect x="14" y="4" width="20" height="38" rx="4"/>
-                            <line x1="22" y1="38" x2="26" y2="38" opacity="0.5"/>
-                            <circle cx="24" cy="14" r="3" fill="currentColor" stroke="none" opacity="0.15"/>
-                            <rect x="18" y="20" width="12" height="2" rx="1" opacity="0.3"/>
-                            <rect x="18" y="25" width="8" height="2" rx="1" opacity="0.2"/>
-                        </svg>
+                    <div class="sc-top">
+                        <span class="sc-num">01</span>
+                        <div class="sc-icon">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <rect x="14" y="4" width="20" height="38" rx="4"/>
+                                <line x1="22" y1="38" x2="26" y2="38" opacity="0.5"/>
+                                <rect x="18" y="12" width="12" height="16" rx="2" opacity="0.2" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3>Mobile App<br>Development</h3>
-                    <p>Native iOS & Android apps, cross-platform solutions with React Native and Flutter. From MVP to scale.</p>
+                    <h3>Mobile Apps</h3>
+                    <p>Native iOS & Android, React Native, Flutter. From MVP to millions of users.</p>
                     <div class="sc-tags">
                         <span>iOS</span><span>Android</span><span>React Native</span><span>Flutter</span>
                     </div>
                 </div>
             </div>
 
-            <div class="service-card" data-glow data-anim="fade">
+            <div class="service-card" data-glow data-anim="fade" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
-                    <span class="sc-num">02</span>
-                    <div class="sc-icon">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                            <rect x="4" y="8" width="40" height="28" rx="3"/>
-                            <line x1="4" y1="14" x2="44" y2="14" opacity="0.3"/>
-                            <circle cx="9" cy="11" r="1.5" fill="currentColor" stroke="none" opacity="0.3"/>
-                            <circle cx="14" cy="11" r="1.5" fill="currentColor" stroke="none" opacity="0.2"/>
-                            <rect x="10" y="20" width="14" height="8" rx="1" opacity="0.15" fill="currentColor" stroke="none"/>
-                            <rect x="28" y="20" width="10" height="3" rx="1" opacity="0.2"/>
-                            <rect x="28" y="26" width="7" height="2" rx="1" opacity="0.15"/>
-                        </svg>
+                    <div class="sc-top">
+                        <span class="sc-num">02</span>
+                        <div class="sc-icon">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <rect x="4" y="8" width="40" height="28" rx="3"/>
+                                <line x1="4" y1="14" x2="44" y2="14" opacity="0.3"/>
+                                <rect x="10" y="20" width="14" height="8" rx="1" opacity="0.15" fill="currentColor" stroke="none"/>
+                                <rect x="28" y="20" width="10" height="3" rx="1" opacity="0.2"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3>Web<br>Development</h3>
-                    <p>High-performance web apps, SaaS platforms, and progressive web apps built for speed and scalability.</p>
+                    <h3>Web Platforms</h3>
+                    <p>High-performance SaaS, e-commerce, and PWAs that convert visitors into customers.</p>
                     <div class="sc-tags">
                         <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
                     </div>
                 </div>
             </div>
 
-            <div class="service-card" data-glow data-anim="fade">
+            <div class="service-card" data-glow data-anim="fade" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
-                    <span class="sc-num">03</span>
-                    <div class="sc-icon">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                            <circle cx="24" cy="24" r="18"/>
-                            <circle cx="24" cy="24" r="8" opacity="0.4"/>
-                            <line x1="24" y1="6" x2="24" y2="12" opacity="0.3"/>
-                            <line x1="24" y1="36" x2="24" y2="42" opacity="0.3"/>
-                            <line x1="6" y1="24" x2="12" y2="24" opacity="0.3"/>
-                            <line x1="36" y1="24" x2="42" y2="24" opacity="0.3"/>
-                        </svg>
+                    <div class="sc-top">
+                        <span class="sc-num">03</span>
+                        <div class="sc-icon">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <circle cx="24" cy="24" r="18"/>
+                                <circle cx="24" cy="24" r="8" opacity="0.4"/>
+                                <line x1="24" y1="6" x2="24" y2="12" opacity="0.3"/>
+                                <line x1="24" y1="36" x2="24" y2="42" opacity="0.3"/>
+                                <line x1="6" y1="24" x2="12" y2="24" opacity="0.3"/>
+                                <line x1="36" y1="24" x2="42" y2="24" opacity="0.3"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3>UI/UX<br>Design</h3>
-                    <p>User research, prototyping, and visual design. Interfaces that are beautiful, intuitive, and conversion-optimized.</p>
+                    <h3>Product Design</h3>
+                    <p>Research-backed UI/UX that users love. Design systems that scale with your brand.</p>
                     <div class="sc-tags">
-                        <span>Figma</span><span>Prototyping</span><span>Design Systems</span>
+                        <span>Figma</span><span>Prototyping</span><span>Design Systems</span><span>UX Research</span>
                     </div>
                 </div>
             </div>
 
-            <div class="service-card" data-glow data-anim="fade">
+            <div class="service-card" data-glow data-anim="fade" data-tilt>
                 <div class="glow-card-border"></div>
                 <div class="sc-content">
-                    <span class="sc-num">04</span>
-                    <div class="sc-icon">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                            <polyline points="8,38 18,24 28,30 40,12"/>
-                            <polygon points="40,12 40,20 34,16" fill="currentColor" opacity="0.2"/>
-                            <line x1="8" y1="42" x2="40" y2="42" opacity="0.2"/>
-                            <line x1="8" y1="42" x2="8" y2="10" opacity="0.2"/>
-                        </svg>
+                    <div class="sc-top">
+                        <span class="sc-num">04</span>
+                        <div class="sc-icon">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <polyline points="8,38 18,24 28,30 40,12"/>
+                                <polygon points="40,12 40,20 34,16" fill="currentColor" opacity="0.2"/>
+                                <line x1="8" y1="42" x2="40" y2="42" opacity="0.2"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3>Strategic<br>Consulting</h3>
-                    <p>Technical architecture, product strategy, and CTO-as-a-service for scaling startups.</p>
+                    <h3>CTO-as-a-Service</h3>
+                    <p>Technical leadership, architecture reviews, and strategic roadmapping for scaling startups.</p>
                     <div class="sc-tags">
-                        <span>Architecture</span><span>Strategy</span><span>Augmentation</span>
+                        <span>Architecture</span><span>Strategy</span><span>Team Building</span>
                     </div>
                 </div>
             </div>
@@ -298,102 +314,165 @@
     </div>
 </section>
 
-<!-- ====== ELEVATE DIVIDER ====== -->
-<div class="elevate-section" id="elevateText">
-    <div class="elevate-word" aria-hidden="true">
-        <span class="el-char" data-i="0">E</span><span class="el-char" data-i="1">L</span><span class="el-char" data-i="2">E</span><span class="el-char" data-i="3">V</span><span class="el-char" data-i="4">A</span><span class="el-char" data-i="5">T</span><span class="el-char" data-i="6">E</span>
+<!-- METRICS BANNER -->
+<div class="metrics-banner">
+    <div class="container">
+        <div class="mb-grid">
+            <div class="mb-item" data-anim="fade">
+                <span class="mb-n" data-count="99">0</span><span class="mb-s">%</span>
+                <span class="mb-l">Uptime SLA</span>
+            </div>
+            <div class="mb-item" data-anim="fade">
+                <span class="mb-n" data-count="90">0</span><span class="mb-s">+</span>
+                <span class="mb-l">Lighthouse Scores</span>
+            </div>
+            <div class="mb-item" data-anim="fade">
+                <span class="mb-n" data-count="2">0</span><span class="mb-s">wk</span>
+                <span class="mb-l">Avg. Sprint Cycle</span>
+            </div>
+            <div class="mb-item" data-anim="fade">
+                <span class="mb-n" data-count="24">0</span><span class="mb-s">/7</span>
+                <span class="mb-l">Support Coverage</span>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- ====== WORK ====== -->
-<section class="sec" id="work">
+<!-- PROCESS -->
+<section class="sec" id="process">
     <div class="container">
-        <div class="sec-header" data-anim="clip">
-            <div>
-                <span class="label">Selected Work</span>
-                <h2 class="heading-lg">Crafted with <em>precision</em></h2>
-            </div>
-            <a href="#contact" class="arrow-link">Start a Project <span>&rarr;</span></a>
+        <div class="sec-header center" data-anim="clip">
+            <span class="label">How We Work</span>
+            <h2 class="heading-lg">A proven path<br>from idea to <em>impact</em></h2>
         </div>
 
-        <div class="work-grid">
-            <div class="work-card" data-anim="fade" data-glow>
+        <div class="process-grid">
+            <div class="proc-card" data-glow data-anim="fade">
                 <div class="glow-card-border"></div>
-                <div class="wc-inner">
-                    <canvas class="wc-canvas" data-art="geo"></canvas>
-                    <div class="wc-content">
-                        <span class="wc-badge">Coming Soon</span>
-                        <h3>Project Alpha</h3>
-                        <p>A revolutionary fintech platform redefining payment infrastructure.</p>
-                    </div>
-                    <span class="wc-num">01</span>
+                <div class="proc-inner">
+                    <div class="proc-step">01</div>
+                    <div class="proc-line"></div>
+                    <h3>Discovery</h3>
+                    <p>Deep-dive into your market, users, and goals. We map the opportunity before writing a line of code.</p>
                 </div>
             </div>
-
-            <div class="work-card" data-anim="fade" data-glow>
+            <div class="proc-card" data-glow data-anim="fade">
                 <div class="glow-card-border"></div>
-                <div class="wc-inner">
-                    <canvas class="wc-canvas" data-art="wave"></canvas>
-                    <div class="wc-content">
-                        <span class="wc-badge">Coming Soon</span>
-                        <h3>Project Beta</h3>
-                        <p>An AI-powered health platform transforming patient care.</p>
-                    </div>
-                    <span class="wc-num">02</span>
+                <div class="proc-inner">
+                    <div class="proc-step">02</div>
+                    <div class="proc-line"></div>
+                    <h3>Design</h3>
+                    <p>Interactive prototypes, validated with real users. Every screen is tested before it's built.</p>
+                </div>
+            </div>
+            <div class="proc-card" data-glow data-anim="fade">
+                <div class="glow-card-border"></div>
+                <div class="proc-inner">
+                    <div class="proc-step">03</div>
+                    <div class="proc-line"></div>
+                    <h3>Develop</h3>
+                    <p>Agile sprints, CI/CD pipelines, code reviews. Production-grade code from sprint one.</p>
+                </div>
+            </div>
+            <div class="proc-card" data-glow data-anim="fade">
+                <div class="glow-card-border"></div>
+                <div class="proc-inner">
+                    <div class="proc-step">04</div>
+                    <div class="proc-line"></div>
+                    <h3>Launch & Scale</h3>
+                    <p>Deployment, monitoring, optimization. We stay with you through growth and beyond.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ====== TECH ====== -->
+<!-- TECH -->
 <section class="sec sec-dark" id="tech">
     <div class="container">
         <div class="sec-header center" data-anim="clip">
             <span class="label">Technology</span>
-            <h2 class="heading-lg">Our <em>toolkit</em></h2>
+            <h2 class="heading-lg">Battle-tested <em>stack</em></h2>
+            <p class="tech-sub" data-anim="fade">We use the best tools for the job — never the trendiest. Every choice is optimized for performance, scalability, and developer velocity.</p>
         </div>
-        <div class="tech-orbit" data-anim="fade">
-            <div class="tech-center-logo">
-                <svg viewBox="0 0 100 100" width="40" height="40">
-                    <polygon points="50,8 92,92 8,92" fill="none" stroke="#E63946" stroke-width="2"/>
-                    <polygon points="50,28 78,82 22,82" fill="none" stroke="#E63946" stroke-width="2"/>
-                    <polygon points="50,44 66,74 34,74" fill="#E63946"/>
-                </svg>
+
+        <div class="tech-categories" data-anim="fade">
+            <div class="tech-cat" data-glow>
+                <div class="glow-card-border"></div>
+                <div class="tc-inner">
+                    <h4>Frontend</h4>
+                    <div class="tc-pills">
+                        <span class="t-pill">React</span>
+                        <span class="t-pill">Next.js</span>
+                        <span class="t-pill">TypeScript</span>
+                        <span class="t-pill">Tailwind</span>
+                    </div>
+                </div>
             </div>
-            <div class="tech-pills">
-                <div class="t-pill" style="--angle:0deg;--dist:1">React</div>
-                <div class="t-pill" style="--angle:25.7deg;--dist:1">Swift</div>
-                <div class="t-pill" style="--angle:51.4deg;--dist:1">Kotlin</div>
-                <div class="t-pill" style="--angle:77.1deg;--dist:1">Node.js</div>
-                <div class="t-pill" style="--angle:102.8deg;--dist:1">Python</div>
-                <div class="t-pill" style="--angle:128.5deg;--dist:1">TypeScript</div>
-                <div class="t-pill" style="--angle:154.2deg;--dist:1">Flutter</div>
-                <div class="t-pill" style="--angle:180deg;--dist:1">AWS</div>
-                <div class="t-pill" style="--angle:205.7deg;--dist:1">Docker</div>
-                <div class="t-pill" style="--angle:231.4deg;--dist:1">Figma</div>
-                <div class="t-pill" style="--angle:257.1deg;--dist:1">Next.js</div>
-                <div class="t-pill" style="--angle:282.8deg;--dist:1">PostgreSQL</div>
-                <div class="t-pill" style="--angle:308.5deg;--dist:1">GraphQL</div>
-                <div class="t-pill" style="--angle:334.2deg;--dist:1">Firebase</div>
+            <div class="tech-cat" data-glow>
+                <div class="glow-card-border"></div>
+                <div class="tc-inner">
+                    <h4>Mobile</h4>
+                    <div class="tc-pills">
+                        <span class="t-pill">Swift</span>
+                        <span class="t-pill">Kotlin</span>
+                        <span class="t-pill">React Native</span>
+                        <span class="t-pill">Flutter</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-cat" data-glow>
+                <div class="glow-card-border"></div>
+                <div class="tc-inner">
+                    <h4>Backend</h4>
+                    <div class="tc-pills">
+                        <span class="t-pill">Node.js</span>
+                        <span class="t-pill">Python</span>
+                        <span class="t-pill">PostgreSQL</span>
+                        <span class="t-pill">GraphQL</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-cat" data-glow>
+                <div class="glow-card-border"></div>
+                <div class="tc-inner">
+                    <h4>Infrastructure</h4>
+                    <div class="tc-pills">
+                        <span class="t-pill">AWS</span>
+                        <span class="t-pill">Docker</span>
+                        <span class="t-pill">Kubernetes</span>
+                        <span class="t-pill">Firebase</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-cat" data-glow>
+                <div class="glow-card-border"></div>
+                <div class="tc-inner">
+                    <h4>Design</h4>
+                    <div class="tc-pills">
+                        <span class="t-pill">Figma</span>
+                        <span class="t-pill">Framer</span>
+                        <span class="t-pill">Storybook</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ====== TESTIMONIALS ====== -->
+<!-- TESTIMONIALS -->
 <section class="sec" id="testimonials">
     <div class="container">
         <div class="sec-header center" data-anim="clip">
-            <span class="label">Testimonials</span>
-            <h2 class="heading-lg">Trusted by <em>leaders</em></h2>
+            <span class="label">Results</span>
+            <h2 class="heading-lg">What our clients <em>say</em></h2>
         </div>
 
         <div class="testi-wrap">
             <div class="testi-card active" data-idx="0" data-glow>
                 <div class="glow-card-border"></div>
                 <div class="testi-inner">
-                    <span class="testi-mark">&ldquo;</span>
+                    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     <blockquote>Allevamentum didn't just build our app — they elevated our entire product vision. The team's technical expertise and strategic thinking were instrumental in our Series A raise.</blockquote>
                     <div class="testi-who">
                         <div class="testi-av">JM</div>
@@ -404,8 +483,8 @@
             <div class="testi-card" data-idx="1" data-glow>
                 <div class="glow-card-border"></div>
                 <div class="testi-inner">
-                    <span class="testi-mark">&ldquo;</span>
-                    <blockquote>Working with Allevamentum felt like having an in-house team. Communication, code quality, and design sense — all world-class.</blockquote>
+                    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <blockquote>Working with Allevamentum felt like having a world-class in-house team. Communication, code quality, and design sense — all exceptional.</blockquote>
                     <div class="testi-who">
                         <div class="testi-av">RP</div>
                         <div><strong>Rachel Park</strong><span>CTO, NexaHealth</span></div>
@@ -415,7 +494,7 @@
             <div class="testi-card" data-idx="2" data-glow>
                 <div class="glow-card-border"></div>
                 <div class="testi-inner">
-                    <span class="testi-mark">&ldquo;</span>
+                    <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     <blockquote>The precision and attention to detail is unlike anything I've experienced. They turned our rough concept into a product users genuinely love.</blockquote>
                     <div class="testi-who">
                         <div class="testi-av">TW</div>
@@ -432,17 +511,17 @@
     </div>
 </section>
 
-<!-- ====== CONTACT ====== -->
+<!-- CTA -->
 <section class="sec sec-cta" id="contact">
     <div class="container">
         <div class="cta-grid">
             <div class="cta-left">
-                <span class="label" data-anim="clip">Start a Project</span>
-                <h2 class="heading-xxl" data-anim="clip">Ready to<br><em>elevate</em>?</h2>
-                <p class="cta-desc" data-anim="fade">Tell us about your vision. We'll show you how to get there.</p>
+                <span class="label" data-anim="clip">Let's Build</span>
+                <h2 class="heading-xxl" data-anim="clip">Ready to<br><em>dominate</em>?</h2>
+                <p class="cta-desc" data-anim="fade">Tell us about your vision. We'll show you the fastest path to market leadership.</p>
                 <div class="cta-info" data-anim="fade">
                     <div><span class="cta-info-l">Email</span><a href="mailto:hello@allevamentum.com">hello@allevamentum.com</a></div>
-                    <div><span class="cta-info-l">Location</span><span>Worldwide, Remote-first</span></div>
+                    <div><span class="cta-info-l">Availability</span><span>Accepting 2 new projects for Q2</span></div>
                 </div>
             </div>
             <div class="cta-right" data-anim="fade">
@@ -452,15 +531,15 @@
                         <input type="text" placeholder="Your Name" required>
                         <input type="email" placeholder="Email Address" required>
                         <select required>
-                            <option value="" disabled selected>Select a service</option>
+                            <option value="" disabled selected>What do you need?</option>
                             <option>Mobile App Development</option>
-                            <option>Web Development</option>
-                            <option>UI/UX Design</option>
-                            <option>Strategic Consulting</option>
-                            <option>Other</option>
+                            <option>Web Platform</option>
+                            <option>Product Design</option>
+                            <option>CTO-as-a-Service</option>
+                            <option>Full Product Build</option>
                         </select>
-                        <textarea rows="4" placeholder="Tell us about your project" required></textarea>
-                        <button type="submit" class="btn">
+                        <textarea rows="4" placeholder="Tell us about your project and timeline" required></textarea>
+                        <button type="submit" class="btn magnetic" data-magnetic>
                             <span>Send Message</span>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </button>
@@ -471,22 +550,23 @@
     </div>
 </section>
 
-<!-- ====== FOOTER ====== -->
+<!-- FOOTER -->
 <footer class="footer">
     <div class="container">
         <div class="ft-top">
             <div class="ft-brand">
                 <svg width="36" height="36" viewBox="0 0 100 100">
-                    <polygon points="50,8 92,92 8,92" fill="none" stroke="#E63946" stroke-width="2"/>
-                    <polygon points="50,28 78,82 22,82" fill="none" stroke="#E63946" stroke-width="2"/>
-                    <polygon points="50,44 66,74 34,74" fill="#E63946"/>
+                    <defs><linearGradient id="ftGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F7DF7"/><stop offset="100%" stop-color="#8B6CF7"/></linearGradient></defs>
+                    <polygon points="50,8 92,92 8,92" fill="none" stroke="url(#ftGrad)" stroke-width="2"/>
+                    <polygon points="50,28 78,82 22,82" fill="none" stroke="url(#ftGrad)" stroke-width="2"/>
+                    <polygon points="50,44 66,74 34,74" fill="url(#ftGrad)"/>
                 </svg>
                 <div><span class="ft-name">ALLEVAMENTUM</span><span class="ft-tag">Instrument of Elevation</span></div>
             </div>
             <div class="ft-cols">
                 <div class="ft-col">
                     <h4>Navigate</h4>
-                    <a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#contact">Contact</a>
+                    <a href="#about">About</a><a href="#services">Services</a><a href="#process">Process</a><a href="#tech">Technology</a><a href="#contact">Contact</a>
                 </div>
                 <div class="ft-col">
                     <h4>Connect</h4>

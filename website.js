@@ -1,17 +1,14 @@
 /* ============================================
-   ALLEVAMENTUM — Premium Interactions v3
-   indicium.ai-inspired: interactive dot grid,
-   glow cards, scroll color text, spring cursor,
-   generative card art, Apple-level polish
+   ALLEVAMENTUM — Premium Interactions v4
+   Blue-violet scheme, magnetic buttons,
+   3D tilt cards, interactive dot grid,
+   scroll-color text, text scramble
    ============================================ */
 
 (function(){
 'use strict';
 
-/* ===================== BOOT ===================== */
-document.addEventListener('DOMContentLoaded', () => {
-    initLoader();
-});
+document.addEventListener('DOMContentLoaded', () => initLoader());
 
 function boot() {
     initSmoothScroll();
@@ -23,43 +20,31 @@ function boot() {
     initHeroDotGrid();
     initGlowCards();
     initScrollColorText();
-    initElevateText();
-    initWorkCanvases();
+    initTilt();
+    initMagnetic();
     initTestimonials();
     initSmoothLinks();
     initParallax();
-    // Draw accent underline after hero animation
-    setTimeout(() => {
-        const a = document.querySelector('.h1-accent');
-        if (a) a.classList.add('drawn');
-    }, 3600);
+    initTextScramble();
 }
 
 /* ===================== LOADER ===================== */
 function initLoader() {
     const el = document.getElementById('loader');
     if (!el) return boot();
-    setTimeout(() => {
-        el.classList.add('out');
-        boot();
-    }, 2600);
+    setTimeout(() => { el.classList.add('out'); boot(); }, 2600);
 }
 
-/* ===================== SMOOTH SCROLL (Lerp) ===================== */
-let scrollY = 0, smoothY = 0;
-let isSmooth = true;
+/* ===================== SMOOTH SCROLL ===================== */
+let scrollY = 0, smoothY = 0, isSmooth = true;
 
 function initSmoothScroll() {
     const main = document.getElementById('smooth');
     if (!main || window.innerWidth < 769) { isSmooth = false; return; }
 
-    function updateHeight() {
-        document.body.style.height = main.scrollHeight + 'px';
-    }
+    function updateHeight() { document.body.style.height = main.scrollHeight + 'px'; }
     updateHeight();
     window.addEventListener('resize', updateHeight);
-
-    // Observe DOM changes for dynamic content
     const ro = new ResizeObserver(updateHeight);
     ro.observe(main);
 
@@ -72,18 +57,13 @@ function initSmoothScroll() {
     })();
 }
 
-/* ===================== CURSOR (Spring Physics) ===================== */
+/* ===================== CURSOR ===================== */
 function initCursor() {
     const dot = document.getElementById('cur');
     const ring = document.getElementById('curRing');
     if (!dot || !ring || window.innerWidth < 769) return;
 
-    let mx = -100, my = -100;
-    let dx = -100, dy = -100;
-    let rx = -100, ry = -100;
-    let vx = 0, vy = 0;
-    const stiffness = 0.1;
-    const damping = 0.72;
+    let mx = -100, my = -100, dx = -100, dy = -100, rx = -100, ry = -100, vx = 0, vy = 0;
 
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
@@ -93,18 +73,16 @@ function initCursor() {
         dot.style.left = dx + 'px';
         dot.style.top = dy + 'px';
 
-        vx = (vx + (mx - rx) * stiffness) * damping;
-        vy = (vy + (my - ry) * stiffness) * damping;
-        rx += vx;
-        ry += vy;
+        vx = (vx + (mx - rx) * 0.1) * 0.72;
+        vy = (vy + (my - ry) * 0.1) * 0.72;
+        rx += vx; ry += vy;
         ring.style.left = rx + 'px';
         ring.style.top = ry + 'px';
 
         requestAnimationFrame(loop);
     })();
 
-    // Hover effect on interactive elements
-    const hovers = 'a,button,.work-card,.service-card,.glow-card,.t-pill,.el-char,.tn-btn,.btn';
+    const hovers = 'a,button,.service-card,.adv-item,.proc-card,.tech-cat,.t-pill,.tn-btn,.btn,.testi-card';
     document.addEventListener('mouseover', e => {
         if (e.target.closest(hovers)) { dot.classList.add('big'); ring.classList.add('big'); }
     });
@@ -127,25 +105,22 @@ function initMobileMenu() {
     const burger = document.getElementById('burger');
     const menu = document.getElementById('mobNav');
     if (!burger || !menu) return;
-
     burger.addEventListener('click', () => {
         burger.classList.toggle('on');
         menu.classList.toggle('on');
         document.body.style.overflow = menu.classList.contains('on') ? 'hidden' : '';
     });
     menu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
-        burger.classList.remove('on');
-        menu.classList.remove('on');
+        burger.classList.remove('on'); menu.classList.remove('on');
         document.body.style.overflow = '';
     }));
 }
 
-/* ===================== ANIMATIONS (Reveal) ===================== */
+/* ===================== ANIMATIONS ===================== */
 function initAnimations() {
     const els = document.querySelectorAll('[data-anim]');
     if (!els.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
+    const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el = entry.target;
@@ -154,25 +129,21 @@ function initAnimations() {
                 const sibs = parent ? parent.querySelectorAll(':scope > [data-anim]') : [];
                 let idx = 0;
                 sibs.forEach((s, i) => { if (s === el) idx = i; });
-                const totalDelay = delay ? delay * 200 : idx * 140;
+                const totalDelay = delay ? delay * 200 : idx * 150;
                 setTimeout(() => el.classList.add('in'), totalDelay);
-                observer.unobserve(el);
+                obs.unobserve(el);
             }
         });
     }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
-
-    els.forEach(el => observer.observe(el));
+    els.forEach(el => obs.observe(el));
 }
 
 /* ===================== COUNTERS ===================== */
 function initCounters() {
     const nums = document.querySelectorAll('[data-count]');
     if (!nums.length) return;
-
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) { countUp(e.target); obs.unobserve(e.target); }
-        });
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); obs.unobserve(e.target); } });
     }, { threshold: 0.5 });
     nums.forEach(el => obs.observe(el));
 
@@ -182,8 +153,11 @@ function initCounters() {
         const start = performance.now();
         (function tick(now) {
             const p = Math.min((now - start) / dur, 1);
-            const ease = 1 - Math.pow(1 - p, 4);
-            el.textContent = Math.round(target * ease);
+            // Spring-like bounce at the end
+            const ease = p < 0.8
+                ? 1 - Math.pow(1 - p / 0.8, 4)
+                : 1 + Math.sin((p - 0.8) / 0.2 * Math.PI) * 0.03;
+            el.textContent = Math.round(target * Math.min(ease, 1));
             if (p < 1) requestAnimationFrame(tick);
         })(start);
     }
@@ -203,36 +177,29 @@ function initHeroDotGrid() {
     }
     resize();
     window.addEventListener('resize', resize);
-
     canvas.addEventListener('mousemove', e => {
         const r = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - r.left;
-        mouse.y = e.clientY - r.top;
+        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
     });
     canvas.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
 
-    // Generate dot grid
-    const spacing = 32;
-    const dots = [];
-    const activationRadius = 180;
-    const connectionRadius = 60;
+    const spacing = 30;
+    let dots = [];
+    const activationRadius = 200;
+    const connectionRadius = 65;
 
     function generateDots() {
-        dots.length = 0;
+        dots = [];
         const cols = Math.ceil(w / spacing) + 1;
         const rows = Math.ceil(h / spacing) + 1;
         for (let r = 0; r < rows; r++) {
             for (let c = 0; c < cols; c++) {
                 dots.push({
-                    baseX: c * spacing,
-                    baseY: r * spacing,
-                    x: c * spacing,
-                    y: r * spacing,
-                    baseAlpha: 0.06 + Math.random() * 0.02,
-                    alpha: 0,
-                    targetAlpha: 0,
-                    size: 1,
-                    targetSize: 1,
+                    baseX: c * spacing, baseY: r * spacing,
+                    x: c * spacing, y: r * spacing,
+                    baseAlpha: 0.04 + Math.random() * 0.02,
+                    alpha: 0, targetAlpha: 0,
+                    size: 1, targetSize: 1,
                     phase: Math.random() * Math.PI * 2,
                 });
             }
@@ -245,27 +212,23 @@ function initHeroDotGrid() {
 
     function draw() {
         ctx.clearRect(0, 0, w, h);
-        time += 0.008;
+        time += 0.006;
 
         const activeDots = [];
 
         for (const dot of dots) {
-            // Subtle floating
-            dot.x = dot.baseX + Math.sin(time + dot.phase) * 1.5;
-            dot.y = dot.baseY + Math.cos(time * 0.8 + dot.phase * 1.3) * 1.5;
+            dot.x = dot.baseX + Math.sin(time + dot.phase) * 1.2;
+            dot.y = dot.baseY + Math.cos(time * 0.7 + dot.phase * 1.3) * 1.2;
 
-            const dx = dot.x - mouse.x;
-            const dy = dot.y - mouse.y;
+            const dx = dot.x - mouse.x, dy = dot.y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < activationRadius) {
                 const proximity = 1 - dist / activationRadius;
-                dot.targetAlpha = dot.baseAlpha + proximity * 0.45;
-                dot.targetSize = 1 + proximity * 2.5;
+                dot.targetAlpha = dot.baseAlpha + proximity * 0.5;
+                dot.targetSize = 1 + proximity * 2.8;
                 activeDots.push(dot);
-
-                // Repel slightly from cursor
-                const repel = proximity * 4;
+                const repel = proximity * 5;
                 dot.x += (dx / dist) * repel;
                 dot.y += (dy / dist) * repel;
             } else {
@@ -273,59 +236,57 @@ function initHeroDotGrid() {
                 dot.targetSize = 1;
             }
 
-            // Smooth interpolation
-            dot.alpha += (dot.targetAlpha - dot.alpha) * 0.08;
-            dot.size += (dot.targetSize - dot.size) * 0.08;
+            dot.alpha += (dot.targetAlpha - dot.alpha) * 0.07;
+            dot.size += (dot.targetSize - dot.size) * 0.07;
 
-            // Draw dot
             if (dot.alpha > 0.01) {
                 ctx.beginPath();
                 ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(230,57,70,${dot.alpha})`;
+                ctx.fillStyle = `rgba(79,125,247,${dot.alpha})`;
                 ctx.fill();
             }
         }
 
-        // Draw connections between activated dots
+        // Connect activated dots
         for (let i = 0; i < activeDots.length; i++) {
             for (let j = i + 1; j < activeDots.length; j++) {
                 const a = activeDots[i], b = activeDots[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
+                const dx = a.x - b.x, dy = a.y - b.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < connectionRadius) {
                     const alpha = (1 - dist / connectionRadius) * 0.12;
                     ctx.beginPath();
-                    ctx.moveTo(a.x, a.y);
-                    ctx.lineTo(b.x, b.y);
-                    ctx.strokeStyle = `rgba(230,57,70,${alpha})`;
+                    ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+                    ctx.strokeStyle = `rgba(79,125,247,${alpha})`;
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 }
             }
         }
 
-        // Draw a subtle triangle constellation in center
-        const cx = w * 0.5, cy = h * 0.4;
-        const triSize = Math.min(w, h) * 0.18;
-        const triAlpha = 0.015 + Math.sin(time) * 0.005;
+        // Brand triangle constellation
+        const cx = w * 0.5, cy = h * 0.38;
+        const triSize = Math.min(w, h) * 0.16;
+        const triAlpha = 0.012 + Math.sin(time * 0.5) * 0.004;
+
+        // Outer
         ctx.beginPath();
         ctx.moveTo(cx, cy - triSize);
         ctx.lineTo(cx + triSize * 0.87, cy + triSize * 0.5);
         ctx.lineTo(cx - triSize * 0.87, cy + triSize * 0.5);
         ctx.closePath();
-        ctx.strokeStyle = `rgba(230,57,70,${triAlpha})`;
+        ctx.strokeStyle = `rgba(79,125,247,${triAlpha})`;
         ctx.lineWidth = 0.8;
         ctx.stroke();
 
-        // Inner triangle
-        const inner = triSize * 0.55;
+        // Inner
+        const inner = triSize * 0.5;
         ctx.beginPath();
         ctx.moveTo(cx, cy - inner);
         ctx.lineTo(cx + inner * 0.87, cy + inner * 0.5);
         ctx.lineTo(cx - inner * 0.87, cy + inner * 0.5);
         ctx.closePath();
-        ctx.strokeStyle = `rgba(230,57,70,${triAlpha * 0.7})`;
+        ctx.strokeStyle = `rgba(139,108,247,${triAlpha * 0.8})`;
         ctx.lineWidth = 0.5;
         ctx.stroke();
 
@@ -334,18 +295,14 @@ function initHeroDotGrid() {
     draw();
 }
 
-/* ===================== GLOW CARDS (Mouse Tracking Border) ===================== */
+/* ===================== GLOW CARDS ===================== */
 function initGlowCards() {
     if (window.innerWidth < 769) return;
-
     document.addEventListener('mousemove', e => {
-        const cards = document.querySelectorAll('[data-glow]');
-        cards.forEach(card => {
+        document.querySelectorAll('[data-glow]').forEach(card => {
             const r = card.getBoundingClientRect();
-            const x = e.clientX - r.left;
-            const y = e.clientY - r.top;
-            card.style.setProperty('--glow-x', x + 'px');
-            card.style.setProperty('--glow-y', y + 'px');
+            card.style.setProperty('--glow-x', (e.clientX - r.left) + 'px');
+            card.style.setProperty('--glow-y', (e.clientY - r.top) + 'px');
         });
     });
 }
@@ -355,7 +312,6 @@ function initScrollColorText() {
     const el = document.querySelector('[data-scroll-color]');
     if (!el) return;
 
-    // Split text into words, preserving <em> tags
     const html = el.innerHTML;
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
@@ -380,10 +336,8 @@ function initScrollColorText() {
         } else if (node.nodeType === Node.ELEMENT_NODE) {
             const clone = node.cloneNode(false);
             Array.from(node.childNodes).forEach(child => {
-                const wrapped = wrapWords(child);
-                clone.appendChild(wrapped);
+                clone.appendChild(wrapWords(child));
             });
-            // Wrap the element itself in a word span
             const span = document.createElement('span');
             span.className = 'st-word';
             span.dataset.wordIdx = wordIndex++;
@@ -406,159 +360,75 @@ function initScrollColorText() {
     function update() {
         const rect = el.getBoundingClientRect();
         const winH = window.innerHeight;
-        // Calculate progress: 0 when section enters, 1 when it leaves
-        const start = winH * 0.8;
-        const end = winH * 0.2;
-        const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
+        const progress = Math.max(0, Math.min(1, (winH * 0.8 - rect.top) / (winH * 0.6)));
         const litCount = Math.floor(progress * totalWords);
-
-        words.forEach((w, i) => {
-            w.classList.toggle('lit', i < litCount);
-        });
-
+        words.forEach((w, i) => w.classList.toggle('lit', i < litCount));
         requestAnimationFrame(update);
     }
     update();
 }
 
-/* ===================== MOUSE-REACTIVE "ELEVATE" ===================== */
-function initElevateText() {
-    const chars = document.querySelectorAll('.el-char');
-    if (!chars.length || window.innerWidth < 769) return;
-
-    document.addEventListener('mousemove', e => {
-        chars.forEach(ch => {
-            const r = ch.getBoundingClientRect();
-            const cx = r.left + r.width / 2;
-            const cy = r.top + r.height / 2;
-            const dx = e.clientX - cx;
-            const dy = e.clientY - cy;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const maxDist = 320;
-
-            if (dist < maxDist) {
-                const force = (maxDist - dist) / maxDist;
-                const ease = force * force; // quadratic for snappier feel
-                const moveX = (dx / dist) * ease * -24;
-                const moveY = (dy / dist) * ease * -18;
-                ch.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                const alpha = 0.06 + ease * 0.8;
-                ch.style.color = `rgba(230,57,70,${alpha})`;
-                ch.style.webkitTextStrokeColor = `rgba(230,57,70,${alpha * 0.5})`;
-                ch.style.textShadow = `0 0 ${ease * 30}px rgba(230,57,70,${ease * 0.3})`;
-            } else {
-                ch.style.transform = 'translate(0,0)';
-                ch.style.color = 'transparent';
-                ch.style.webkitTextStrokeColor = 'rgba(255,255,255,0.06)';
-                ch.style.textShadow = 'none';
-            }
+/* ===================== 3D TILT ===================== */
+function initTilt() {
+    if (window.innerWidth < 769) return;
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform = `perspective(800px) rotateX(${y * -6}deg) rotateY(${x * 6}deg) translateY(-6px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
         });
     });
 }
 
-/* ===================== WORK CARD CANVASES ===================== */
-function initWorkCanvases() {
-    document.querySelectorAll('.wc-canvas').forEach(canvas => {
-        const ctx = canvas.getContext('2d');
-        const type = canvas.dataset.art;
-        let w, h;
+/* ===================== MAGNETIC BUTTONS ===================== */
+function initMagnetic() {
+    if (window.innerWidth < 769) return;
+    document.querySelectorAll('[data-magnetic]').forEach(el => {
+        el.addEventListener('mousemove', e => {
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - r.left - r.width / 2;
+            const y = e.clientY - r.top - r.height / 2;
+            el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = 'translate(0, 0)';
+            el.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            setTimeout(() => el.style.transition = '', 500);
+        });
+    });
+}
 
-        function resize() {
-            w = canvas.width = canvas.parentElement.offsetWidth;
-            h = canvas.height = canvas.parentElement.offsetHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
+/* ===================== TEXT SCRAMBLE ON HOVER ===================== */
+function initTextScramble() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
 
-        let time = 0;
+    document.querySelectorAll('.nav-link, .ft-col a').forEach(link => {
+        const original = link.textContent;
+        let isScrambling = false;
 
-        function drawGeo() {
-            ctx.clearRect(0, 0, w, h);
-            time += 0.005;
-
-            // Floating geometric shapes
-            const shapes = [
-                { x: 0.3, y: 0.35, size: 0.2, rot: time * 0.3, sides: 3 },
-                { x: 0.7, y: 0.5, size: 0.15, rot: -time * 0.2, sides: 6 },
-                { x: 0.5, y: 0.7, size: 0.12, rot: time * 0.4, sides: 4 },
-                { x: 0.2, y: 0.6, size: 0.08, rot: -time * 0.5, sides: 3 },
-                { x: 0.8, y: 0.3, size: 0.1, rot: time * 0.25, sides: 5 },
-            ];
-
-            shapes.forEach((s, i) => {
-                const cx = s.x * w + Math.sin(time + i) * 10;
-                const cy = s.y * h + Math.cos(time * 0.8 + i) * 8;
-                const size = s.size * Math.min(w, h);
-
-                ctx.save();
-                ctx.translate(cx, cy);
-                ctx.rotate(s.rot);
-                ctx.beginPath();
-                for (let j = 0; j < s.sides; j++) {
-                    const angle = (Math.PI * 2 / s.sides) * j - Math.PI / 2;
-                    const px = Math.cos(angle) * size;
-                    const py = Math.sin(angle) * size;
-                    j === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        link.addEventListener('mouseenter', () => {
+            if (isScrambling) return;
+            isScrambling = true;
+            let iteration = 0;
+            const interval = setInterval(() => {
+                link.textContent = original.split('')
+                    .map((char, i) => {
+                        if (i < iteration) return original[i];
+                        if (char === ' ') return ' ';
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    }).join('');
+                iteration += 1 / 2;
+                if (iteration >= original.length) {
+                    link.textContent = original;
+                    clearInterval(interval);
+                    isScrambling = false;
                 }
-                ctx.closePath();
-                ctx.strokeStyle = `rgba(230,57,70,${0.04 + Math.sin(time + i) * 0.015})`;
-                ctx.lineWidth = 0.7;
-                ctx.stroke();
-                ctx.restore();
-            });
-
-            // Connecting lines
-            for (let i = 0; i < shapes.length - 1; i++) {
-                const a = shapes[i], b = shapes[i + 1];
-                ctx.beginPath();
-                ctx.moveTo(a.x * w + Math.sin(time + i) * 10, a.y * h);
-                ctx.lineTo(b.x * w + Math.sin(time + i + 1) * 10, b.y * h);
-                ctx.strokeStyle = 'rgba(230,57,70,0.02)';
-                ctx.lineWidth = 0.5;
-                ctx.stroke();
-            }
-
-            requestAnimationFrame(drawGeo);
-        }
-
-        function drawWave() {
-            ctx.clearRect(0, 0, w, h);
-            time += 0.008;
-
-            // Multiple wave layers
-            for (let layer = 0; layer < 4; layer++) {
-                ctx.beginPath();
-                const yBase = h * (0.3 + layer * 0.15);
-                const amplitude = 30 + layer * 10;
-                const frequency = 0.003 + layer * 0.001;
-                const alpha = 0.03 - layer * 0.005;
-
-                for (let x = 0; x <= w; x += 3) {
-                    const y = yBase + Math.sin(x * frequency + time * (1 + layer * 0.3)) * amplitude
-                        + Math.sin(x * frequency * 2.1 + time * 0.7) * amplitude * 0.3;
-                    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-                }
-                ctx.strokeStyle = `rgba(230,57,70,${alpha})`;
-                ctx.lineWidth = 0.8;
-                ctx.stroke();
-            }
-
-            // Floating particles
-            for (let i = 0; i < 12; i++) {
-                const px = (w * (i / 12 + 0.04)) + Math.sin(time * 0.5 + i * 2) * 20;
-                const py = h * 0.5 + Math.cos(time * 0.7 + i * 1.5) * h * 0.25;
-                const size = 1 + Math.sin(time + i) * 0.5;
-                ctx.beginPath();
-                ctx.arc(px, py, size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(230,57,70,${0.08 + Math.sin(time + i) * 0.04})`;
-                ctx.fill();
-            }
-
-            requestAnimationFrame(drawWave);
-        }
-
-        if (type === 'geo') drawGeo();
-        else drawWave();
+            }, 30);
+        });
     });
 }
 
@@ -601,7 +471,8 @@ function initSmoothLinks() {
 /* ===================== PARALLAX ===================== */
 function initParallax() {
     const heroContent = document.querySelector('.hero-content');
-    const heroGlow = document.querySelector('.hero-glow');
+    const orb1 = document.querySelector('.hero-orb-1');
+    const orb2 = document.querySelector('.hero-orb-2');
     if (!heroContent) return;
 
     (function tick() {
@@ -609,11 +480,9 @@ function initParallax() {
         if (y < window.innerHeight * 1.3) {
             const ratio = y / window.innerHeight;
             heroContent.style.transform = `translateY(${y * 0.18}px)`;
-            heroContent.style.opacity = 1 - ratio * 0.65;
-            if (heroGlow) {
-                heroGlow.style.transform = `translateX(-50%) translateY(${y * 0.1}px)`;
-                heroGlow.style.opacity = 1 - ratio * 0.5;
-            }
+            heroContent.style.opacity = 1 - ratio * 0.7;
+            if (orb1) orb1.style.transform = `translate(${Math.sin(Date.now()/3000)*30}px, ${y * 0.08 + Math.cos(Date.now()/4000)*20}px)`;
+            if (orb2) orb2.style.transform = `translate(${Math.cos(Date.now()/3500)*25}px, ${y * 0.05 + Math.sin(Date.now()/4500)*15}px)`;
         }
         requestAnimationFrame(tick);
     })();
