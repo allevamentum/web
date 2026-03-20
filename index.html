@@ -15,7 +15,7 @@
 <!-- ====== PRELOADER ====== -->
 <div class="loader" id="loader">
     <div class="loader-inner">
-        <svg class="loader-mark" viewBox="0 0 100 100" width="56" height="56">
+        <svg class="loader-mark" viewBox="0 0 100 100" width="60" height="60">
             <polygon class="loader-tri t1" points="50,8 92,92 8,92"/>
             <polygon class="loader-tri t2" points="50,28 78,82 22,82"/>
             <polygon class="loader-tri t3" points="50,44 66,74 34,74"/>
@@ -36,7 +36,7 @@
 <nav class="nav" id="nav">
     <div class="nav-inner">
         <a href="#" class="nav-logo" aria-label="Home">
-            <svg viewBox="0 0 100 100" width="30" height="30">
+            <svg viewBox="0 0 100 100" width="32" height="32">
                 <polygon points="50,8 92,92 8,92" fill="none" stroke="currentColor" stroke-width="3"/>
                 <polygon points="50,28 78,82 22,82" fill="none" stroke="currentColor" stroke-width="3"/>
                 <polygon points="50,44 66,74 34,74" fill="currentColor"/>
@@ -49,8 +49,8 @@
             <a href="#contact" class="nav-link">Contact</a>
         </div>
         <a href="#contact" class="nav-cta">
-            <span class="nav-cta-pulse"></span>
-            Let's Talk
+            <span class="nav-cta-dot"></span>
+            Start a Project
         </a>
         <button class="burger" id="burger" aria-label="Menu">
             <span class="burger-line"></span>
@@ -78,6 +78,7 @@
 <!-- ====== HERO ====== -->
 <section class="hero" id="hero">
     <canvas class="hero-canvas" id="heroCanvas"></canvas>
+    <div class="hero-glow"></div>
     <div class="hero-fade"></div>
 
     <div class="hero-content container">
@@ -88,12 +89,11 @@
 
         <h1 class="hero-h1">
             <span class="h1-line" data-anim="clip" data-delay="1">
-                <span class="h1-word">We</span>
-                <span class="h1-word">build</span>
+                <span class="h1-word">We craft</span>
             </span>
             <span class="h1-line" data-anim="clip" data-delay="2">
-                <span class="h1-word h1-outline">digital</span>
-                <span class="h1-word">products</span>
+                <span class="h1-word h1-gradient">digital</span>
+                <span class="h1-word">experiences</span>
             </span>
             <span class="h1-line" data-anim="clip" data-delay="3">
                 <span class="h1-word">that</span>
@@ -102,90 +102,92 @@
         </h1>
 
         <div class="hero-foot" data-anim="fade" data-delay="4">
-            <p class="hero-desc">Full-service digital agency crafting exceptional mobile apps, web platforms, and strategic solutions for ambitious startups.</p>
+            <p class="hero-desc">We partner with ambitious startups to build world-class mobile apps, web platforms, and strategic digital solutions.</p>
             <div class="hero-stats">
                 <div class="h-stat">
                     <span class="h-stat-n" data-count="50">0</span><span class="h-stat-s">+</span>
-                    <span class="h-stat-l">Projects</span>
+                    <span class="h-stat-l">Projects Delivered</span>
                 </div>
                 <div class="h-stat">
                     <span class="h-stat-n" data-count="98">0</span><span class="h-stat-s">%</span>
-                    <span class="h-stat-l">Satisfaction</span>
+                    <span class="h-stat-l">Client Satisfaction</span>
                 </div>
                 <div class="h-stat">
-                    <span class="h-stat-n" data-count="5">0</span><span class="h-stat-s">&#9733;</span>
-                    <span class="h-stat-l">Rating</span>
+                    <span class="h-stat-n" data-count="5">0</span><span class="h-stat-s">.0</span>
+                    <span class="h-stat-l">Average Rating</span>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="scroll-hint" data-anim="fade" data-delay="5">
-        <div class="scroll-mouse"><div class="scroll-dot"></div></div>
-        <span>Scroll</span>
+        <div class="scroll-line"></div>
+        <span>Scroll to explore</span>
     </div>
 </section>
 
 <!-- ====== MARQUEE ====== -->
 <div class="marquee">
-    <div class="marquee-inner">
-        <span>App Development</span><span class="mq-tri">&#9650;</span>
-        <span>UI/UX Design</span><span class="mq-tri">&#9650;</span>
-        <span>Web Platforms</span><span class="mq-tri">&#9650;</span>
-        <span>Consulting</span><span class="mq-tri">&#9650;</span>
-        <span>Strategy</span><span class="mq-tri">&#9650;</span>
-        <span>Branding</span><span class="mq-tri">&#9650;</span>
-        <span>App Development</span><span class="mq-tri">&#9650;</span>
-        <span>UI/UX Design</span><span class="mq-tri">&#9650;</span>
-        <span>Web Platforms</span><span class="mq-tri">&#9650;</span>
-        <span>Consulting</span><span class="mq-tri">&#9650;</span>
-        <span>Strategy</span><span class="mq-tri">&#9650;</span>
-        <span>Branding</span><span class="mq-tri">&#9650;</span>
+    <div class="marquee-track">
+        <div class="marquee-inner">
+            <span>App Development</span><span class="mq-sep">/</span>
+            <span>UI/UX Design</span><span class="mq-sep">/</span>
+            <span>Web Platforms</span><span class="mq-sep">/</span>
+            <span>Software Consulting</span><span class="mq-sep">/</span>
+            <span>Digital Strategy</span><span class="mq-sep">/</span>
+            <span>Brand Identity</span><span class="mq-sep">/</span>
+            <span>App Development</span><span class="mq-sep">/</span>
+            <span>UI/UX Design</span><span class="mq-sep">/</span>
+            <span>Web Platforms</span><span class="mq-sep">/</span>
+            <span>Software Consulting</span><span class="mq-sep">/</span>
+            <span>Digital Strategy</span><span class="mq-sep">/</span>
+            <span>Brand Identity</span><span class="mq-sep">/</span>
+        </div>
     </div>
 </div>
 
 <!-- ====== ABOUT ====== -->
 <section class="sec" id="about">
     <div class="container">
-        <!-- Decorative SVG mesh -->
-        <svg class="about-deco" viewBox="0 0 600 400" fill="none" aria-hidden="true">
-            <defs>
-                <linearGradient id="meshGrad" x1="0" y1="0" x2="600" y2="400" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#E63946" stop-opacity="0.06"/>
-                    <stop offset="100%" stop-color="#E63946" stop-opacity="0"/>
-                </linearGradient>
-            </defs>
-            <path d="M0 200 Q150 80 300 200 T600 200" stroke="url(#meshGrad)" stroke-width="1" opacity="0.5"/>
-            <path d="M0 240 Q150 120 300 240 T600 240" stroke="url(#meshGrad)" stroke-width="1" opacity="0.35"/>
-            <path d="M0 280 Q150 160 300 280 T600 280" stroke="url(#meshGrad)" stroke-width="1" opacity="0.2"/>
-            <path d="M50 100 L150 180 L80 260 Z" fill="#E63946" opacity="0.02"/>
-            <path d="M400 60 L520 150 L380 200 Z" fill="#E63946" opacity="0.015"/>
-        </svg>
-
         <div class="about-grid">
             <div class="about-left">
                 <span class="label" data-anim="clip">About Us</span>
                 <h2 class="heading-lg" data-anim="clip">
-                    We are the<br><em>instrument</em> of<br>your elevation.
+                    The <em>instrument</em><br>of your elevation
                 </h2>
+                <p class="about-lead" data-anim="fade">Born from the Latin roots <em>allevare</em> (to elevate) and <em>mentum</em> (instrument), we exist to lift ambitious startups above the noise.</p>
             </div>
-            <div class="about-right">
-                <div class="about-text" data-anim="fade">
-                    <p>Born from a Latin root meaning "instrument of elevation," Allevamentum exists to lift startups above the noise. We combine strategic thinking with technical excellence to build products people love.</p>
-                    <p>Every pixel is purposeful. Every line of code is precise. Every decision moves you forward.</p>
-                </div>
-                <div class="metrics" data-anim="fade">
-                    <div class="metric-card">
-                        <span class="metric-n" data-count="7">0</span>
-                        <span class="metric-l">Years Combined<br>Experience</span>
+            <div class="about-right" data-anim="fade">
+                <div class="about-cards">
+                    <div class="glow-card" data-glow>
+                        <div class="glow-card-border"></div>
+                        <div class="glow-card-content">
+                            <div class="gc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <h3>Full-Cycle Development</h3>
+                            <p>From concept to launch and beyond. We handle every layer of your digital product.</p>
+                        </div>
                     </div>
-                    <div class="metric-card">
-                        <span class="metric-n" data-count="3">0</span>
-                        <span class="metric-l">Countries<br>Served</span>
+                    <div class="glow-card" data-glow>
+                        <div class="glow-card-border"></div>
+                        <div class="glow-card-content">
+                            <div class="gc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <h3>Global Perspective</h3>
+                            <p>Remote-first team serving clients across 3 countries with 24/7 support.</p>
+                        </div>
                     </div>
-                    <div class="metric-card">
-                        <span class="metric-n">24<small>/7</small></span>
-                        <span class="metric-l">Support &<br>Maintenance</span>
+                    <div class="glow-card" data-glow>
+                        <div class="glow-card-border"></div>
+                        <div class="glow-card-content">
+                            <div class="gc-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                            <h3>Excellence First</h3>
+                            <p>Every pixel purposeful. Every line of code precise. Every decision moves you forward.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -193,106 +195,102 @@
     </div>
 </section>
 
+<!-- ====== SCROLL TEXT ====== -->
+<div class="scroll-text-section" id="scrollText">
+    <div class="container">
+        <p class="scroll-text" data-scroll-color>We don't just build software. We architect digital experiences that <em>transform</em> how people interact with your brand, drive <em>measurable growth</em>, and set new standards for what's possible.</p>
+    </div>
+</div>
+
 <!-- ====== SERVICES ====== -->
-<section class="sec sec-dark" id="services">
+<section class="sec" id="services">
     <div class="container">
         <span class="label" data-anim="clip">What We Do</span>
-        <h2 class="heading-lg" data-anim="clip">Services built<br>for <em>growth</em></h2>
+        <h2 class="heading-lg" data-anim="clip">Services designed<br>for <em>scale</em></h2>
 
-        <div class="accordion">
-            <div class="acc-item" data-anim="line">
-                <button class="acc-head">
-                    <span class="acc-num">01</span>
-                    <span class="acc-title">Mobile App Development</span>
-                    <span class="acc-icon">
-                        <!-- Abstract: stacked screens -->
+        <div class="services-grid">
+            <div class="service-card" data-glow data-anim="fade">
+                <div class="glow-card-border"></div>
+                <div class="sc-content">
+                    <span class="sc-num">01</span>
+                    <div class="sc-icon">
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                            <rect x="14" y="6" width="20" height="36" rx="4"/>
-                            <rect x="10" y="10" width="20" height="36" rx="4" opacity="0.3"/>
-                            <circle cx="24" cy="36" r="2"/>
+                            <rect x="14" y="4" width="20" height="38" rx="4"/>
+                            <line x1="22" y1="38" x2="26" y2="38" opacity="0.5"/>
+                            <circle cx="24" cy="14" r="3" fill="currentColor" stroke="none" opacity="0.15"/>
+                            <rect x="18" y="20" width="12" height="2" rx="1" opacity="0.3"/>
+                            <rect x="18" y="25" width="8" height="2" rx="1" opacity="0.2"/>
                         </svg>
-                    </span>
-                    <span class="acc-toggle"><span></span></span>
-                </button>
-                <div class="acc-body">
-                    <div class="acc-body-inner">
-                        <p>Native iOS and Android applications, cross-platform solutions with React Native and Flutter. From MVP to scale — we build apps that users love and investors notice.</p>
-                        <div class="acc-tags">
-                            <span>iOS</span><span>Android</span><span>React Native</span><span>Flutter</span>
-                        </div>
+                    </div>
+                    <h3>Mobile App<br>Development</h3>
+                    <p>Native iOS & Android apps, cross-platform solutions with React Native and Flutter. From MVP to scale.</p>
+                    <div class="sc-tags">
+                        <span>iOS</span><span>Android</span><span>React Native</span><span>Flutter</span>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-item" data-anim="line">
-                <button class="acc-head">
-                    <span class="acc-num">02</span>
-                    <span class="acc-title">Web Development</span>
-                    <span class="acc-icon">
-                        <!-- Abstract: connected nodes -->
+            <div class="service-card" data-glow data-anim="fade">
+                <div class="glow-card-border"></div>
+                <div class="sc-content">
+                    <span class="sc-num">02</span>
+                    <div class="sc-icon">
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                            <circle cx="12" cy="12" r="4"/><circle cx="36" cy="12" r="4"/>
-                            <circle cx="12" cy="36" r="4"/><circle cx="36" cy="36" r="4"/>
-                            <circle cx="24" cy="24" r="5"/>
-                            <line x1="16" y1="12" x2="19" y2="21"/><line x1="32" y1="12" x2="29" y2="21"/>
-                            <line x1="16" y1="36" x2="19" y2="27"/><line x1="32" y1="36" x2="29" y2="27"/>
+                            <rect x="4" y="8" width="40" height="28" rx="3"/>
+                            <line x1="4" y1="14" x2="44" y2="14" opacity="0.3"/>
+                            <circle cx="9" cy="11" r="1.5" fill="currentColor" stroke="none" opacity="0.3"/>
+                            <circle cx="14" cy="11" r="1.5" fill="currentColor" stroke="none" opacity="0.2"/>
+                            <rect x="10" y="20" width="14" height="8" rx="1" opacity="0.15" fill="currentColor" stroke="none"/>
+                            <rect x="28" y="20" width="10" height="3" rx="1" opacity="0.2"/>
+                            <rect x="28" y="26" width="7" height="2" rx="1" opacity="0.15"/>
                         </svg>
-                    </span>
-                    <span class="acc-toggle"><span></span></span>
-                </button>
-                <div class="acc-body">
-                    <div class="acc-body-inner">
-                        <p>High-performance web applications, SaaS platforms, e-commerce solutions, and progressive web apps built with modern frameworks for speed and scalability.</p>
-                        <div class="acc-tags">
-                            <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
-                        </div>
+                    </div>
+                    <h3>Web<br>Development</h3>
+                    <p>High-performance web apps, SaaS platforms, and progressive web apps built for speed and scalability.</p>
+                    <div class="sc-tags">
+                        <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-item" data-anim="line">
-                <button class="acc-head">
-                    <span class="acc-num">03</span>
-                    <span class="acc-title">UI/UX Design</span>
-                    <span class="acc-icon">
-                        <!-- Abstract: overlapping circles -->
+            <div class="service-card" data-glow data-anim="fade">
+                <div class="glow-card-border"></div>
+                <div class="sc-content">
+                    <span class="sc-num">03</span>
+                    <div class="sc-icon">
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                            <circle cx="20" cy="20" r="12"/><circle cx="28" cy="20" r="12" opacity="0.5"/>
-                            <circle cx="24" cy="28" r="12" opacity="0.3"/>
+                            <circle cx="24" cy="24" r="18"/>
+                            <circle cx="24" cy="24" r="8" opacity="0.4"/>
+                            <line x1="24" y1="6" x2="24" y2="12" opacity="0.3"/>
+                            <line x1="24" y1="36" x2="24" y2="42" opacity="0.3"/>
+                            <line x1="6" y1="24" x2="12" y2="24" opacity="0.3"/>
+                            <line x1="36" y1="24" x2="42" y2="24" opacity="0.3"/>
                         </svg>
-                    </span>
-                    <span class="acc-toggle"><span></span></span>
-                </button>
-                <div class="acc-body">
-                    <div class="acc-body-inner">
-                        <p>User research, wireframing, prototyping, and visual design. We create interfaces that are beautiful, intuitive, and conversion-optimized.</p>
-                        <div class="acc-tags">
-                            <span>Figma</span><span>Prototyping</span><span>Design Systems</span>
-                        </div>
+                    </div>
+                    <h3>UI/UX<br>Design</h3>
+                    <p>User research, prototyping, and visual design. Interfaces that are beautiful, intuitive, and conversion-optimized.</p>
+                    <div class="sc-tags">
+                        <span>Figma</span><span>Prototyping</span><span>Design Systems</span>
                     </div>
                 </div>
             </div>
 
-            <div class="acc-item" data-anim="line">
-                <button class="acc-head">
-                    <span class="acc-num">04</span>
-                    <span class="acc-title">Strategic Consulting</span>
-                    <span class="acc-icon">
-                        <!-- Abstract: ascending chart -->
+            <div class="service-card" data-glow data-anim="fade">
+                <div class="glow-card-border"></div>
+                <div class="sc-content">
+                    <span class="sc-num">04</span>
+                    <div class="sc-icon">
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
-                            <polyline points="6,40 18,28 28,32 42,12"/>
-                            <polygon points="42,12 42,20 34,16" fill="currentColor" opacity="0.3"/>
-                            <circle cx="18" cy="28" r="2.5"/><circle cx="28" cy="32" r="2.5"/>
+                            <polyline points="8,38 18,24 28,30 40,12"/>
+                            <polygon points="40,12 40,20 34,16" fill="currentColor" opacity="0.2"/>
+                            <line x1="8" y1="42" x2="40" y2="42" opacity="0.2"/>
+                            <line x1="8" y1="42" x2="8" y2="10" opacity="0.2"/>
                         </svg>
-                    </span>
-                    <span class="acc-toggle"><span></span></span>
-                </button>
-                <div class="acc-body">
-                    <div class="acc-body-inner">
-                        <p>Technical architecture, product strategy, team augmentation, and CTO-as-a-service. We help scaling startups make the right decisions at the right time.</p>
-                        <div class="acc-tags">
-                            <span>Architecture</span><span>Strategy</span><span>Augmentation</span>
-                        </div>
+                    </div>
+                    <h3>Strategic<br>Consulting</h3>
+                    <p>Technical architecture, product strategy, and CTO-as-a-service for scaling startups.</p>
+                    <div class="sc-tags">
+                        <span>Architecture</span><span>Strategy</span><span>Augmentation</span>
                     </div>
                 </div>
             </div>
@@ -313,52 +311,33 @@
         <div class="sec-header" data-anim="clip">
             <div>
                 <span class="label">Selected Work</span>
-                <h2 class="heading-lg">Our <em>work</em></h2>
+                <h2 class="heading-lg">Crafted with <em>precision</em></h2>
             </div>
             <a href="#contact" class="arrow-link">Start a Project <span>&rarr;</span></a>
         </div>
 
         <div class="work-grid">
-            <div class="work-card" data-anim="fade" data-tilt>
+            <div class="work-card" data-anim="fade" data-glow>
+                <div class="glow-card-border"></div>
                 <div class="wc-inner">
-                    <!-- Abstract SVG background -->
-                    <svg class="wc-art" viewBox="0 0 600 400" fill="none" aria-hidden="true">
-                        <defs>
-                            <radialGradient id="wg1" cx="30%" cy="30%"><stop offset="0%" stop-color="#E63946" stop-opacity="0.08"/><stop offset="100%" stop-color="transparent"/></radialGradient>
-                        </defs>
-                        <rect width="600" height="400" fill="url(#wg1)"/>
-                        <polygon points="100,350 300,80 500,350" fill="none" stroke="#E63946" stroke-width="0.5" opacity="0.15"/>
-                        <polygon points="150,350 300,140 450,350" fill="none" stroke="#E63946" stroke-width="0.5" opacity="0.1"/>
-                        <polygon points="200,350 300,200 400,350" fill="#E63946" opacity="0.03"/>
-                        <circle cx="300" cy="180" r="60" stroke="#E63946" stroke-width="0.3" opacity="0.1"/>
-                        <circle cx="300" cy="180" r="100" stroke="#E63946" stroke-width="0.3" opacity="0.05"/>
-                    </svg>
+                    <canvas class="wc-canvas" data-art="geo"></canvas>
                     <div class="wc-content">
                         <span class="wc-badge">Coming Soon</span>
                         <h3>Project Alpha</h3>
-                        <p>Something extraordinary is in the works.</p>
+                        <p>A revolutionary fintech platform redefining payment infrastructure.</p>
                     </div>
                     <span class="wc-num">01</span>
                 </div>
             </div>
 
-            <div class="work-card" data-anim="fade" data-tilt>
+            <div class="work-card" data-anim="fade" data-glow>
+                <div class="glow-card-border"></div>
                 <div class="wc-inner">
-                    <svg class="wc-art" viewBox="0 0 600 400" fill="none" aria-hidden="true">
-                        <defs>
-                            <radialGradient id="wg2" cx="70%" cy="30%"><stop offset="0%" stop-color="#9B59B6" stop-opacity="0.08"/><stop offset="100%" stop-color="transparent"/></radialGradient>
-                        </defs>
-                        <rect width="600" height="400" fill="url(#wg2)"/>
-                        <circle cx="300" cy="200" r="120" stroke="#9B59B6" stroke-width="0.5" opacity="0.1"/>
-                        <circle cx="300" cy="200" r="80" stroke="#9B59B6" stroke-width="0.5" opacity="0.12"/>
-                        <circle cx="300" cy="200" r="40" fill="#9B59B6" opacity="0.03"/>
-                        <line x1="180" y1="200" x2="420" y2="200" stroke="#9B59B6" stroke-width="0.3" opacity="0.1"/>
-                        <line x1="300" y1="80" x2="300" y2="320" stroke="#9B59B6" stroke-width="0.3" opacity="0.1"/>
-                    </svg>
+                    <canvas class="wc-canvas" data-art="wave"></canvas>
                     <div class="wc-content">
-                        <span class="wc-badge" style="border-color:rgba(155,89,182,0.4);color:#9B59B6">Coming Soon</span>
+                        <span class="wc-badge">Coming Soon</span>
                         <h3>Project Beta</h3>
-                        <p>Redefining expectations, one interaction at a time.</p>
+                        <p>An AI-powered health platform transforming patient care.</p>
                     </div>
                     <span class="wc-num">02</span>
                 </div>
@@ -372,23 +351,32 @@
     <div class="container">
         <div class="sec-header center" data-anim="clip">
             <span class="label">Technology</span>
-            <h2 class="heading-lg">Our <em>stack</em></h2>
+            <h2 class="heading-lg">Our <em>toolkit</em></h2>
         </div>
-        <div class="tech-wrap" data-anim="fade">
-            <div class="t-pill" style="--d:0">React</div>
-            <div class="t-pill" style="--d:1">Swift</div>
-            <div class="t-pill" style="--d:2">Kotlin</div>
-            <div class="t-pill" style="--d:3">Node.js</div>
-            <div class="t-pill" style="--d:4">Python</div>
-            <div class="t-pill" style="--d:5">TypeScript</div>
-            <div class="t-pill" style="--d:6">Flutter</div>
-            <div class="t-pill" style="--d:7">AWS</div>
-            <div class="t-pill" style="--d:8">Docker</div>
-            <div class="t-pill" style="--d:9">Figma</div>
-            <div class="t-pill" style="--d:10">Next.js</div>
-            <div class="t-pill" style="--d:11">PostgreSQL</div>
-            <div class="t-pill" style="--d:12">GraphQL</div>
-            <div class="t-pill" style="--d:13">Firebase</div>
+        <div class="tech-orbit" data-anim="fade">
+            <div class="tech-center-logo">
+                <svg viewBox="0 0 100 100" width="40" height="40">
+                    <polygon points="50,8 92,92 8,92" fill="none" stroke="#E63946" stroke-width="2"/>
+                    <polygon points="50,28 78,82 22,82" fill="none" stroke="#E63946" stroke-width="2"/>
+                    <polygon points="50,44 66,74 34,74" fill="#E63946"/>
+                </svg>
+            </div>
+            <div class="tech-pills">
+                <div class="t-pill" style="--angle:0deg;--dist:1">React</div>
+                <div class="t-pill" style="--angle:25.7deg;--dist:1">Swift</div>
+                <div class="t-pill" style="--angle:51.4deg;--dist:1">Kotlin</div>
+                <div class="t-pill" style="--angle:77.1deg;--dist:1">Node.js</div>
+                <div class="t-pill" style="--angle:102.8deg;--dist:1">Python</div>
+                <div class="t-pill" style="--angle:128.5deg;--dist:1">TypeScript</div>
+                <div class="t-pill" style="--angle:154.2deg;--dist:1">Flutter</div>
+                <div class="t-pill" style="--angle:180deg;--dist:1">AWS</div>
+                <div class="t-pill" style="--angle:205.7deg;--dist:1">Docker</div>
+                <div class="t-pill" style="--angle:231.4deg;--dist:1">Figma</div>
+                <div class="t-pill" style="--angle:257.1deg;--dist:1">Next.js</div>
+                <div class="t-pill" style="--angle:282.8deg;--dist:1">PostgreSQL</div>
+                <div class="t-pill" style="--angle:308.5deg;--dist:1">GraphQL</div>
+                <div class="t-pill" style="--angle:334.2deg;--dist:1">Firebase</div>
+            </div>
         </div>
     </div>
 </section>
@@ -398,39 +386,48 @@
     <div class="container">
         <div class="sec-header center" data-anim="clip">
             <span class="label">Testimonials</span>
-            <h2 class="heading-lg">What clients <em>say</em></h2>
+            <h2 class="heading-lg">Trusted by <em>leaders</em></h2>
         </div>
 
         <div class="testi-wrap">
-            <div class="testi-card active" data-idx="0">
-                <span class="testi-mark">&ldquo;</span>
-                <blockquote>Allevamentum didn't just build our app — they elevated our entire product vision. The team's technical expertise and strategic thinking were instrumental in our Series A raise.</blockquote>
-                <div class="testi-who">
-                    <div class="testi-av">JM</div>
-                    <div><strong>James Mitchell</strong><span>CEO, FinFlow</span></div>
+            <div class="testi-card active" data-idx="0" data-glow>
+                <div class="glow-card-border"></div>
+                <div class="testi-inner">
+                    <span class="testi-mark">&ldquo;</span>
+                    <blockquote>Allevamentum didn't just build our app — they elevated our entire product vision. The team's technical expertise and strategic thinking were instrumental in our Series A raise.</blockquote>
+                    <div class="testi-who">
+                        <div class="testi-av">JM</div>
+                        <div><strong>James Mitchell</strong><span>CEO, FinFlow</span></div>
+                    </div>
                 </div>
             </div>
-            <div class="testi-card" data-idx="1">
-                <span class="testi-mark">&ldquo;</span>
-                <blockquote>Working with Allevamentum felt like having an in-house team. Communication, code quality, and design sense — all world-class.</blockquote>
-                <div class="testi-who">
-                    <div class="testi-av">RP</div>
-                    <div><strong>Rachel Park</strong><span>CTO, NexaHealth</span></div>
+            <div class="testi-card" data-idx="1" data-glow>
+                <div class="glow-card-border"></div>
+                <div class="testi-inner">
+                    <span class="testi-mark">&ldquo;</span>
+                    <blockquote>Working with Allevamentum felt like having an in-house team. Communication, code quality, and design sense — all world-class.</blockquote>
+                    <div class="testi-who">
+                        <div class="testi-av">RP</div>
+                        <div><strong>Rachel Park</strong><span>CTO, NexaHealth</span></div>
+                    </div>
                 </div>
             </div>
-            <div class="testi-card" data-idx="2">
-                <span class="testi-mark">&ldquo;</span>
-                <blockquote>The precision and attention to detail is unlike anything I've experienced. They turned our rough concept into a product users genuinely love.</blockquote>
-                <div class="testi-who">
-                    <div class="testi-av">TW</div>
-                    <div><strong>Thomas Wright</strong><span>Founder, Artisan Market</span></div>
+            <div class="testi-card" data-idx="2" data-glow>
+                <div class="glow-card-border"></div>
+                <div class="testi-inner">
+                    <span class="testi-mark">&ldquo;</span>
+                    <blockquote>The precision and attention to detail is unlike anything I've experienced. They turned our rough concept into a product users genuinely love.</blockquote>
+                    <div class="testi-who">
+                        <div class="testi-av">TW</div>
+                        <div><strong>Thomas Wright</strong><span>Founder, Artisan Market</span></div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="testi-nav">
-            <button class="tn-btn" id="tPrev">&larr;</button>
+            <button class="tn-btn" id="tPrev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
             <div class="tn-dots"><span class="tn-dot on"></span><span class="tn-dot"></span><span class="tn-dot"></span></div>
-            <button class="tn-btn" id="tNext">&rarr;</button>
+            <button class="tn-btn" id="tNext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         </div>
     </div>
 </section>
@@ -449,23 +446,26 @@
                 </div>
             </div>
             <div class="cta-right" data-anim="fade">
-                <form class="form" id="contactForm">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Email Address" required>
-                    <select required>
-                        <option value="" disabled selected>Select a service</option>
-                        <option>Mobile App Development</option>
-                        <option>Web Development</option>
-                        <option>UI/UX Design</option>
-                        <option>Strategic Consulting</option>
-                        <option>Other</option>
-                    </select>
-                    <textarea rows="4" placeholder="Tell us about your project" required></textarea>
-                    <button type="submit" class="btn">
-                        <span>Send Message</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </button>
-                </form>
+                <div class="form-card" data-glow>
+                    <div class="glow-card-border"></div>
+                    <form class="form" id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <select required>
+                            <option value="" disabled selected>Select a service</option>
+                            <option>Mobile App Development</option>
+                            <option>Web Development</option>
+                            <option>UI/UX Design</option>
+                            <option>Strategic Consulting</option>
+                            <option>Other</option>
+                        </select>
+                        <textarea rows="4" placeholder="Tell us about your project" required></textarea>
+                        <button type="submit" class="btn">
+                            <span>Send Message</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

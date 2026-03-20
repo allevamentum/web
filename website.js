@@ -1,8 +1,8 @@
 /* ============================================
-   ALLEVAMENTUM — Premium Interactions
-   Custom smooth scroll, generative canvas,
-   clip-path reveals, magnetic cursor,
-   mouse-reactive text, accordion
+   ALLEVAMENTUM — Premium Interactions v3
+   indicium.ai-inspired: interactive dot grid,
+   glow cards, scroll color text, spring cursor,
+   generative card art, Apple-level polish
    ============================================ */
 
 (function(){
@@ -20,11 +20,12 @@ function boot() {
     initMobileMenu();
     initAnimations();
     initCounters();
-    initHeroCanvas();
-    initTilt();
-    initAccordion();
-    initTestimonials();
+    initHeroDotGrid();
+    initGlowCards();
+    initScrollColorText();
     initElevateText();
+    initWorkCanvases();
+    initTestimonials();
     initSmoothLinks();
     initParallax();
     // Draw accent underline after hero animation
@@ -45,65 +46,55 @@ function initLoader() {
 }
 
 /* ===================== SMOOTH SCROLL (Lerp) ===================== */
-let scrollY = 0, smoothY = 0, scrollH = 0, winH = 0;
+let scrollY = 0, smoothY = 0;
 let isSmooth = true;
 
 function initSmoothScroll() {
     const main = document.getElementById('smooth');
     if (!main || window.innerWidth < 769) { isSmooth = false; return; }
 
-    document.body.style.height = main.scrollHeight + 'px';
-    winH = window.innerHeight;
-    scrollH = main.scrollHeight;
-
-    window.addEventListener('resize', () => {
+    function updateHeight() {
         document.body.style.height = main.scrollHeight + 'px';
-        winH = window.innerHeight;
-        scrollH = main.scrollHeight;
-    });
+    }
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+
+    // Observe DOM changes for dynamic content
+    const ro = new ResizeObserver(updateHeight);
+    ro.observe(main);
 
     (function tick() {
         scrollY = window.scrollY;
-        smoothY += (scrollY - smoothY) * 0.09;
-        // Snap if close enough
+        smoothY += (scrollY - smoothY) * 0.085;
         if (Math.abs(scrollY - smoothY) < 0.5) smoothY = scrollY;
         main.style.transform = `translate3d(0,${-smoothY}px,0)`;
         requestAnimationFrame(tick);
     })();
 }
 
-function getCurrentScroll() {
-    return isSmooth ? smoothY : window.scrollY;
-}
-
-/* ===================== CURSOR ===================== */
+/* ===================== CURSOR (Spring Physics) ===================== */
 function initCursor() {
     const dot = document.getElementById('cur');
     const ring = document.getElementById('curRing');
     if (!dot || !ring || window.innerWidth < 769) return;
 
-    let mx = 0, my = 0;
-    let dx = 0, dy = 0;
-    let rx = 0, ry = 0;
-    // Spring physics for ring
+    let mx = -100, my = -100;
+    let dx = -100, dy = -100;
+    let rx = -100, ry = -100;
     let vx = 0, vy = 0;
-    const stiffness = 0.12;
-    const damping = 0.7;
+    const stiffness = 0.1;
+    const damping = 0.72;
 
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
     (function loop() {
-        // Dot: fast follow
-        dx += (mx - dx) * 0.2;
-        dy += (my - dy) * 0.2;
+        dx += (mx - dx) * 0.22;
+        dy += (my - dy) * 0.22;
         dot.style.left = dx + 'px';
         dot.style.top = dy + 'px';
 
-        // Ring: spring physics
-        const ax = (mx - rx) * stiffness;
-        const ay = (my - ry) * stiffness;
-        vx = (vx + ax) * damping;
-        vy = (vy + ay) * damping;
+        vx = (vx + (mx - rx) * stiffness) * damping;
+        vy = (vy + (my - ry) * stiffness) * damping;
         rx += vx;
         ry += vy;
         ring.style.left = rx + 'px';
@@ -112,10 +103,13 @@ function initCursor() {
         requestAnimationFrame(loop);
     })();
 
-    const hovers = document.querySelectorAll('a,button,.work-card,.t-pill,.acc-head,.el-char');
-    hovers.forEach(el => {
-        el.addEventListener('mouseenter', () => { dot.classList.add('big'); ring.classList.add('big'); });
-        el.addEventListener('mouseleave', () => { dot.classList.remove('big'); ring.classList.remove('big'); });
+    // Hover effect on interactive elements
+    const hovers = 'a,button,.work-card,.service-card,.glow-card,.t-pill,.el-char,.tn-btn,.btn';
+    document.addEventListener('mouseover', e => {
+        if (e.target.closest(hovers)) { dot.classList.add('big'); ring.classList.add('big'); }
+    });
+    document.addEventListener('mouseout', e => {
+        if (e.target.closest(hovers)) { dot.classList.remove('big'); ring.classList.remove('big'); }
     });
 }
 
@@ -124,7 +118,7 @@ function initNav() {
     const nav = document.getElementById('nav');
     if (!nav) return;
     window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 80);
+        nav.classList.toggle('scrolled', window.scrollY > 100);
     }, { passive: true });
 }
 
@@ -156,18 +150,16 @@ function initAnimations() {
             if (entry.isIntersecting) {
                 const el = entry.target;
                 const delay = parseFloat(el.dataset.delay || 0);
-                // Stagger siblings
                 const parent = el.parentElement;
                 const sibs = parent ? parent.querySelectorAll(':scope > [data-anim]') : [];
                 let idx = 0;
                 sibs.forEach((s, i) => { if (s === el) idx = i; });
-                const totalDelay = delay ? delay * 180 : idx * 120;
-
+                const totalDelay = delay ? delay * 200 : idx * 140;
                 setTimeout(() => el.classList.add('in'), totalDelay);
                 observer.unobserve(el);
             }
         });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
 
     els.forEach(el => observer.observe(el));
 }
@@ -186,7 +178,7 @@ function initCounters() {
 
     function countUp(el) {
         const target = parseInt(el.dataset.count);
-        const dur = 2200;
+        const dur = 2400;
         const start = performance.now();
         (function tick(now) {
             const p = Math.min((now - start) / dur, 1);
@@ -197,8 +189,8 @@ function initCounters() {
     }
 }
 
-/* ===================== HERO CANVAS — Generative Triangle Mesh ===================== */
-function initHeroCanvas() {
+/* ===================== HERO — Interactive Dot Grid ===================== */
+function initHeroDotGrid() {
     const canvas = document.getElementById('heroCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -219,169 +211,354 @@ function initHeroCanvas() {
     });
     canvas.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
 
-    // Generate points in a mountain-like distribution
-    const points = [];
-    const numPoints = Math.min(180, Math.floor((window.innerWidth) / 8));
+    // Generate dot grid
+    const spacing = 32;
+    const dots = [];
+    const activationRadius = 180;
+    const connectionRadius = 60;
 
-    for (let i = 0; i < numPoints; i++) {
-        const x = Math.random() * 1.2 - 0.1; // slight overflow
-        // Mountain distribution: more points near bottom, peak in center
-        const centerWeight = 1 - Math.abs(x - 0.5) * 2;
-        const yBase = 1 - (centerWeight * 0.6 + Math.random() * 0.4) * (0.3 + Math.random() * 0.5);
-        points.push({
-            ox: x, oy: yBase,
-            x: x, y: yBase,
-            vx: 0, vy: 0,
-            phase: Math.random() * Math.PI * 2,
-            speed: 0.003 + Math.random() * 0.005,
-            amp: 0.003 + Math.random() * 0.008,
-        });
-    }
-
-    // Simple Delaunay-like: connect nearby points
-    function getConnections() {
-        const conns = [];
-        const maxDist = 0.12;
-        for (let i = 0; i < points.length; i++) {
-            for (let j = i + 1; j < points.length; j++) {
-                const dx = points[i].ox - points[j].ox;
-                const dy = points[i].oy - points[j].oy;
-                const d = Math.sqrt(dx * dx + dy * dy);
-                if (d < maxDist) conns.push([i, j, d]);
-            }
-        }
-        return conns;
-    }
-
-    const connections = getConnections();
-
-    // Find triangles from connections
-    const triangles = [];
-    const connSet = new Set(connections.map(c => c[0] + '_' + c[1]));
-    function hasConn(a, b) {
-        const key = Math.min(a,b) + '_' + Math.max(a,b);
-        return connSet.has(key);
-    }
-    for (const [a, b] of connections) {
-        for (let c = b + 1; c < points.length; c++) {
-            if (hasConn(a, c) && hasConn(b, c)) {
-                triangles.push([a, b, c]);
+    function generateDots() {
+        dots.length = 0;
+        const cols = Math.ceil(w / spacing) + 1;
+        const rows = Math.ceil(h / spacing) + 1;
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                dots.push({
+                    baseX: c * spacing,
+                    baseY: r * spacing,
+                    x: c * spacing,
+                    y: r * spacing,
+                    baseAlpha: 0.06 + Math.random() * 0.02,
+                    alpha: 0,
+                    targetAlpha: 0,
+                    size: 1,
+                    targetSize: 1,
+                    phase: Math.random() * Math.PI * 2,
+                });
             }
         }
     }
+    generateDots();
+    window.addEventListener('resize', generateDots);
 
     let time = 0;
 
     function draw() {
         ctx.clearRect(0, 0, w, h);
-        time += 0.016;
+        time += 0.008;
 
-        // Update point positions
-        for (const p of points) {
-            // Gentle floating
-            p.x = p.ox + Math.sin(time * 2 + p.phase) * p.amp;
-            p.y = p.oy + Math.cos(time * 1.5 + p.phase * 1.3) * p.amp * 0.7;
+        const activeDots = [];
 
-            // Mouse repulsion
-            const px = p.x * w, py = p.y * h;
-            const dx = px - mouse.x, dy = py - mouse.y;
+        for (const dot of dots) {
+            // Subtle floating
+            dot.x = dot.baseX + Math.sin(time + dot.phase) * 1.5;
+            dot.y = dot.baseY + Math.cos(time * 0.8 + dot.phase * 1.3) * 1.5;
+
+            const dx = dot.x - mouse.x;
+            const dy = dot.y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 160) {
-                const force = (160 - dist) / 160 * 0.015;
-                p.x += (dx / dist) * force;
-                p.y += (dy / dist) * force;
+
+            if (dist < activationRadius) {
+                const proximity = 1 - dist / activationRadius;
+                dot.targetAlpha = dot.baseAlpha + proximity * 0.45;
+                dot.targetSize = 1 + proximity * 2.5;
+                activeDots.push(dot);
+
+                // Repel slightly from cursor
+                const repel = proximity * 4;
+                dot.x += (dx / dist) * repel;
+                dot.y += (dy / dist) * repel;
+            } else {
+                dot.targetAlpha = dot.baseAlpha;
+                dot.targetSize = 1;
+            }
+
+            // Smooth interpolation
+            dot.alpha += (dot.targetAlpha - dot.alpha) * 0.08;
+            dot.size += (dot.targetSize - dot.size) * 0.08;
+
+            // Draw dot
+            if (dot.alpha > 0.01) {
+                ctx.beginPath();
+                ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(230,57,70,${dot.alpha})`;
+                ctx.fill();
             }
         }
 
-        // Draw filled triangles
-        for (const [a, b, c] of triangles) {
-            const pa = points[a], pb = points[b], pc = points[c];
-            ctx.beginPath();
-            ctx.moveTo(pa.x * w, pa.y * h);
-            ctx.lineTo(pb.x * w, pb.y * h);
-            ctx.lineTo(pc.x * w, pc.y * h);
-            ctx.closePath();
-            ctx.fillStyle = 'rgba(230,57,70,0.012)';
-            ctx.fill();
+        // Draw connections between activated dots
+        for (let i = 0; i < activeDots.length; i++) {
+            for (let j = i + 1; j < activeDots.length; j++) {
+                const a = activeDots[i], b = activeDots[j];
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < connectionRadius) {
+                    const alpha = (1 - dist / connectionRadius) * 0.12;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.strokeStyle = `rgba(230,57,70,${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
         }
 
-        // Draw connections
-        for (const [i, j, d] of connections) {
-            const pa = points[i], pb = points[j];
-            const alpha = (1 - d / 0.12) * 0.08;
-            ctx.beginPath();
-            ctx.moveTo(pa.x * w, pa.y * h);
-            ctx.lineTo(pb.x * w, pb.y * h);
-            ctx.strokeStyle = `rgba(230,57,70,${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-        }
+        // Draw a subtle triangle constellation in center
+        const cx = w * 0.5, cy = h * 0.4;
+        const triSize = Math.min(w, h) * 0.18;
+        const triAlpha = 0.015 + Math.sin(time) * 0.005;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - triSize);
+        ctx.lineTo(cx + triSize * 0.87, cy + triSize * 0.5);
+        ctx.lineTo(cx - triSize * 0.87, cy + triSize * 0.5);
+        ctx.closePath();
+        ctx.strokeStyle = `rgba(230,57,70,${triAlpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
 
-        // Draw points
-        for (const p of points) {
-            const px = p.x * w, py = p.y * h;
-            const dx = px - mouse.x, dy = py - mouse.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const glow = dist < 200 ? (200 - dist) / 200 : 0;
-            const alpha = 0.1 + glow * 0.4;
-            const size = 1 + glow * 2;
-
-            ctx.beginPath();
-            ctx.arc(px, py, size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(230,57,70,${alpha})`;
-            ctx.fill();
-        }
+        // Inner triangle
+        const inner = triSize * 0.55;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - inner);
+        ctx.lineTo(cx + inner * 0.87, cy + inner * 0.5);
+        ctx.lineTo(cx - inner * 0.87, cy + inner * 0.5);
+        ctx.closePath();
+        ctx.strokeStyle = `rgba(230,57,70,${triAlpha * 0.7})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
 
         requestAnimationFrame(draw);
     }
     draw();
 }
 
-/* ===================== TILT ===================== */
-function initTilt() {
+/* ===================== GLOW CARDS (Mouse Tracking Border) ===================== */
+function initGlowCards() {
     if (window.innerWidth < 769) return;
-    document.querySelectorAll('[data-tilt]').forEach(card => {
-        const inner = card.querySelector('.wc-inner') || card;
-        card.addEventListener('mousemove', e => {
+
+    document.addEventListener('mousemove', e => {
+        const cards = document.querySelectorAll('[data-glow]');
+        cards.forEach(card => {
             const r = card.getBoundingClientRect();
-            const x = (e.clientX - r.left) / r.width - 0.5;
-            const y = (e.clientY - r.top) / r.height - 0.5;
-            inner.style.transform = `perspective(800px) rotateX(${y * -8}deg) rotateY(${x * 8}deg) scale(1.02)`;
-        });
-        card.addEventListener('mouseleave', () => {
-            inner.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
+            const x = e.clientX - r.left;
+            const y = e.clientY - r.top;
+            card.style.setProperty('--glow-x', x + 'px');
+            card.style.setProperty('--glow-y', y + 'px');
         });
     });
 }
 
-/* ===================== ACCORDION ===================== */
-function initAccordion() {
-    document.querySelectorAll('.acc-head').forEach(head => {
-        head.addEventListener('click', () => {
-            const item = head.parentElement;
-            const body = item.querySelector('.acc-body');
-            const inner = body.querySelector('.acc-body-inner');
-            const isOpen = item.classList.contains('open');
+/* ===================== SCROLL COLOR TEXT ===================== */
+function initScrollColorText() {
+    const el = document.querySelector('[data-scroll-color]');
+    if (!el) return;
 
-            // Close all
-            document.querySelectorAll('.acc-item.open').forEach(openItem => {
-                openItem.classList.remove('open');
-                openItem.querySelector('.acc-body').style.maxHeight = '0';
+    // Split text into words, preserving <em> tags
+    const html = el.innerHTML;
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    let wordIndex = 0;
+    function wrapWords(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            const words = node.textContent.split(/(\s+)/);
+            const fragment = document.createDocumentFragment();
+            words.forEach(word => {
+                if (word.trim()) {
+                    const span = document.createElement('span');
+                    span.className = 'st-word';
+                    span.textContent = word;
+                    span.dataset.wordIdx = wordIndex++;
+                    fragment.appendChild(span);
+                } else if (word) {
+                    fragment.appendChild(document.createTextNode(word));
+                }
             });
+            return fragment;
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const clone = node.cloneNode(false);
+            Array.from(node.childNodes).forEach(child => {
+                const wrapped = wrapWords(child);
+                clone.appendChild(wrapped);
+            });
+            // Wrap the element itself in a word span
+            const span = document.createElement('span');
+            span.className = 'st-word';
+            span.dataset.wordIdx = wordIndex++;
+            span.appendChild(clone);
+            return span;
+        }
+        return node.cloneNode(true);
+    }
 
-            if (!isOpen) {
-                item.classList.add('open');
-                body.style.maxHeight = inner.offsetHeight + 'px';
-            }
+    const fragment = document.createDocumentFragment();
+    Array.from(tempDiv.childNodes).forEach(child => {
+        fragment.appendChild(wrapWords(child));
+    });
+    el.innerHTML = '';
+    el.appendChild(fragment);
 
-            // Recalculate scroll height
-            if (isSmooth) {
-                setTimeout(() => {
-                    const main = document.getElementById('smooth');
-                    document.body.style.height = main.scrollHeight + 'px';
-                }, 700);
+    const words = el.querySelectorAll('.st-word');
+    const totalWords = words.length;
+
+    function update() {
+        const rect = el.getBoundingClientRect();
+        const winH = window.innerHeight;
+        // Calculate progress: 0 when section enters, 1 when it leaves
+        const start = winH * 0.8;
+        const end = winH * 0.2;
+        const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
+        const litCount = Math.floor(progress * totalWords);
+
+        words.forEach((w, i) => {
+            w.classList.toggle('lit', i < litCount);
+        });
+
+        requestAnimationFrame(update);
+    }
+    update();
+}
+
+/* ===================== MOUSE-REACTIVE "ELEVATE" ===================== */
+function initElevateText() {
+    const chars = document.querySelectorAll('.el-char');
+    if (!chars.length || window.innerWidth < 769) return;
+
+    document.addEventListener('mousemove', e => {
+        chars.forEach(ch => {
+            const r = ch.getBoundingClientRect();
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
+            const dx = e.clientX - cx;
+            const dy = e.clientY - cy;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const maxDist = 320;
+
+            if (dist < maxDist) {
+                const force = (maxDist - dist) / maxDist;
+                const ease = force * force; // quadratic for snappier feel
+                const moveX = (dx / dist) * ease * -24;
+                const moveY = (dy / dist) * ease * -18;
+                ch.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                const alpha = 0.06 + ease * 0.8;
+                ch.style.color = `rgba(230,57,70,${alpha})`;
+                ch.style.webkitTextStrokeColor = `rgba(230,57,70,${alpha * 0.5})`;
+                ch.style.textShadow = `0 0 ${ease * 30}px rgba(230,57,70,${ease * 0.3})`;
+            } else {
+                ch.style.transform = 'translate(0,0)';
+                ch.style.color = 'transparent';
+                ch.style.webkitTextStrokeColor = 'rgba(255,255,255,0.06)';
+                ch.style.textShadow = 'none';
             }
         });
+    });
+}
+
+/* ===================== WORK CARD CANVASES ===================== */
+function initWorkCanvases() {
+    document.querySelectorAll('.wc-canvas').forEach(canvas => {
+        const ctx = canvas.getContext('2d');
+        const type = canvas.dataset.art;
+        let w, h;
+
+        function resize() {
+            w = canvas.width = canvas.parentElement.offsetWidth;
+            h = canvas.height = canvas.parentElement.offsetHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        let time = 0;
+
+        function drawGeo() {
+            ctx.clearRect(0, 0, w, h);
+            time += 0.005;
+
+            // Floating geometric shapes
+            const shapes = [
+                { x: 0.3, y: 0.35, size: 0.2, rot: time * 0.3, sides: 3 },
+                { x: 0.7, y: 0.5, size: 0.15, rot: -time * 0.2, sides: 6 },
+                { x: 0.5, y: 0.7, size: 0.12, rot: time * 0.4, sides: 4 },
+                { x: 0.2, y: 0.6, size: 0.08, rot: -time * 0.5, sides: 3 },
+                { x: 0.8, y: 0.3, size: 0.1, rot: time * 0.25, sides: 5 },
+            ];
+
+            shapes.forEach((s, i) => {
+                const cx = s.x * w + Math.sin(time + i) * 10;
+                const cy = s.y * h + Math.cos(time * 0.8 + i) * 8;
+                const size = s.size * Math.min(w, h);
+
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(s.rot);
+                ctx.beginPath();
+                for (let j = 0; j < s.sides; j++) {
+                    const angle = (Math.PI * 2 / s.sides) * j - Math.PI / 2;
+                    const px = Math.cos(angle) * size;
+                    const py = Math.sin(angle) * size;
+                    j === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = `rgba(230,57,70,${0.04 + Math.sin(time + i) * 0.015})`;
+                ctx.lineWidth = 0.7;
+                ctx.stroke();
+                ctx.restore();
+            });
+
+            // Connecting lines
+            for (let i = 0; i < shapes.length - 1; i++) {
+                const a = shapes[i], b = shapes[i + 1];
+                ctx.beginPath();
+                ctx.moveTo(a.x * w + Math.sin(time + i) * 10, a.y * h);
+                ctx.lineTo(b.x * w + Math.sin(time + i + 1) * 10, b.y * h);
+                ctx.strokeStyle = 'rgba(230,57,70,0.02)';
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+            }
+
+            requestAnimationFrame(drawGeo);
+        }
+
+        function drawWave() {
+            ctx.clearRect(0, 0, w, h);
+            time += 0.008;
+
+            // Multiple wave layers
+            for (let layer = 0; layer < 4; layer++) {
+                ctx.beginPath();
+                const yBase = h * (0.3 + layer * 0.15);
+                const amplitude = 30 + layer * 10;
+                const frequency = 0.003 + layer * 0.001;
+                const alpha = 0.03 - layer * 0.005;
+
+                for (let x = 0; x <= w; x += 3) {
+                    const y = yBase + Math.sin(x * frequency + time * (1 + layer * 0.3)) * amplitude
+                        + Math.sin(x * frequency * 2.1 + time * 0.7) * amplitude * 0.3;
+                    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = `rgba(230,57,70,${alpha})`;
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+            }
+
+            // Floating particles
+            for (let i = 0; i < 12; i++) {
+                const px = (w * (i / 12 + 0.04)) + Math.sin(time * 0.5 + i * 2) * 20;
+                const py = h * 0.5 + Math.cos(time * 0.7 + i * 1.5) * h * 0.25;
+                const size = 1 + Math.sin(time + i) * 0.5;
+                ctx.beginPath();
+                ctx.arc(px, py, size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(230,57,70,${0.08 + Math.sin(time + i) * 0.04})`;
+                ctx.fill();
+            }
+
+            requestAnimationFrame(drawWave);
+        }
+
+        if (type === 'geo') drawGeo();
+        else drawWave();
     });
 }
 
@@ -403,39 +580,7 @@ function initTestimonials() {
     }
     prev.addEventListener('click', () => goTo(cur - 1));
     next.addEventListener('click', () => goTo(cur + 1));
-    setInterval(() => goTo(cur + 1), 7000);
-}
-
-/* ===================== MOUSE-REACTIVE "ELEVATE" ===================== */
-function initElevateText() {
-    const chars = document.querySelectorAll('.el-char');
-    if (!chars.length || window.innerWidth < 769) return;
-
-    document.addEventListener('mousemove', e => {
-        chars.forEach(ch => {
-            const r = ch.getBoundingClientRect();
-            const cx = r.left + r.width / 2;
-            const cy = r.top + r.height / 2;
-            const dx = e.clientX - cx;
-            const dy = e.clientY - cy;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const maxDist = 300;
-
-            if (dist < maxDist) {
-                const force = (maxDist - dist) / maxDist;
-                const moveX = (dx / dist) * force * -20;
-                const moveY = (dy / dist) * force * -15;
-                ch.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                const opacity = 0.08 + force * 0.7;
-                ch.style.color = `rgba(230,57,70,${opacity})`;
-                ch.style.webkitTextStrokeColor = `rgba(230,57,70,${opacity * 0.6})`;
-            } else {
-                ch.style.transform = 'translate(0,0)';
-                ch.style.color = 'transparent';
-                ch.style.webkitTextStrokeColor = 'rgba(255,255,255,0.08)';
-            }
-        });
-    });
+    setInterval(() => goTo(cur + 1), 8000);
 }
 
 /* ===================== SMOOTH LINKS ===================== */
@@ -456,16 +601,22 @@ function initSmoothLinks() {
 /* ===================== PARALLAX ===================== */
 function initParallax() {
     const heroContent = document.querySelector('.hero-content');
+    const heroGlow = document.querySelector('.hero-glow');
     if (!heroContent) return;
 
-    window.addEventListener('scroll', () => {
+    (function tick() {
         const y = isSmooth ? smoothY : window.scrollY;
-        if (y < window.innerHeight * 1.2) {
+        if (y < window.innerHeight * 1.3) {
             const ratio = y / window.innerHeight;
-            heroContent.style.transform = `translateY(${y * 0.2}px)`;
-            heroContent.style.opacity = 1 - ratio * 0.6;
+            heroContent.style.transform = `translateY(${y * 0.18}px)`;
+            heroContent.style.opacity = 1 - ratio * 0.65;
+            if (heroGlow) {
+                heroGlow.style.transform = `translateX(-50%) translateY(${y * 0.1}px)`;
+                heroGlow.style.opacity = 1 - ratio * 0.5;
+            }
         }
-    }, { passive: true });
+        requestAnimationFrame(tick);
+    })();
 }
 
 })();
