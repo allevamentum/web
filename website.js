@@ -1,7 +1,7 @@
 /* ============================================
-   ALLEVAMENTUM — Premium Interactions v6
-   Apple-style scroll, blur reveals, scale cards,
-   shimmer buttons, scroll progress, spring physics
+   ALLEVAMENTUM — iOS 26.3 Premium v7
+   Liquid glass, 3D depth, spring physics,
+   emotional visual design, inclusive UX
    ============================================ */
 
 (function(){
@@ -26,6 +26,8 @@ function boot() {
     initParallax();
     initTextScramble();
     initBackgroundParticles();
+    initDepthCards();
+    initFormFocus();
 }
 
 /* ===================== LOADER ===================== */
@@ -35,7 +37,7 @@ function initLoader() {
     setTimeout(() => { el.classList.add('out'); boot(); }, 2600);
 }
 
-/* ===================== SMOOTH SCROLL ===================== */
+/* ===================== SMOOTH SCROLL (iOS-style inertia) ===================== */
 let scrollY = 0, smoothY = 0, isSmooth = true;
 
 function initSmoothScroll() {
@@ -50,7 +52,7 @@ function initSmoothScroll() {
 
     (function tick() {
         scrollY = window.scrollY;
-        smoothY += (scrollY - smoothY) * 0.09;
+        smoothY += (scrollY - smoothY) * 0.085;
         if (Math.abs(scrollY - smoothY) < 0.5) smoothY = scrollY;
         main.style.transform = `translate3d(0,${-smoothY}px,0)`;
         requestAnimationFrame(tick);
@@ -71,37 +73,36 @@ function initScrollProgress() {
     update();
 }
 
-/* ===================== CURSOR ===================== */
+/* ===================== TRIANGLE CURSOR ===================== */
 function initCursor() {
     const dot = document.getElementById('cur');
-    const ring = document.getElementById('curRing');
-    if (!dot || !ring || window.innerWidth < 769) return;
+    const glow = document.getElementById('curGlow');
+    if (!dot || !glow || window.innerWidth < 769) return;
 
-    let mx = -100, my = -100, dx = -100, dy = -100, rx = -100, ry = -100, vx = 0, vy = 0;
+    let mx = -100, my = -100, dx = -100, dy = -100, gx = -100, gy = -100;
 
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
     (function loop() {
-        dx += (mx - dx) * 0.22;
-        dy += (my - dy) * 0.22;
+        dx += (mx - dx) * 0.2;
+        dy += (my - dy) * 0.2;
         dot.style.left = dx + 'px';
         dot.style.top = dy + 'px';
 
-        vx = (vx + (mx - rx) * 0.1) * 0.72;
-        vy = (vy + (my - ry) * 0.1) * 0.72;
-        rx += vx; ry += vy;
-        ring.style.left = rx + 'px';
-        ring.style.top = ry + 'px';
+        gx += (mx - gx) * 0.1;
+        gy += (my - gy) * 0.1;
+        glow.style.left = gx + 'px';
+        glow.style.top = gy + 'px';
 
         requestAnimationFrame(loop);
     })();
 
-    const hovers = 'a,button,.service-card,.adv-item,.proc-card,.tech-cat,.t-pill,.btn';
+    const hovers = 'a,button,.service-card,.adv-item,.proc-card,.tech-cat,.t-pill,.btn,.glass-card';
     document.addEventListener('mouseover', e => {
-        if (e.target.closest(hovers)) { dot.classList.add('big'); ring.classList.add('big'); }
+        if (e.target.closest(hovers)) { dot.classList.add('hovering'); glow.classList.add('hovering'); }
     });
     document.addEventListener('mouseout', e => {
-        if (e.target.closest(hovers)) { dot.classList.remove('big'); ring.classList.remove('big'); }
+        if (e.target.closest(hovers)) { dot.classList.remove('hovering'); glow.classList.remove('hovering'); }
     });
 }
 
@@ -109,8 +110,12 @@ function initCursor() {
 function initNav() {
     const nav = document.getElementById('nav');
     if (!nav) return;
+    let lastScroll = 0;
     window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 100);
+        const y = window.scrollY;
+        nav.classList.toggle('scrolled', y > 80);
+        nav.classList.toggle('nav-hidden', y > 300 && y > lastScroll);
+        lastScroll = y;
     }, { passive: true });
 }
 
@@ -143,12 +148,12 @@ function initAnimations() {
                 const sibs = parent ? parent.querySelectorAll(':scope > [data-anim]') : [];
                 let idx = 0;
                 sibs.forEach((s, i) => { if (s === el) idx = i; });
-                const totalDelay = delay ? delay * 200 : idx * 150;
+                const totalDelay = delay ? delay * 200 : idx * 120;
                 setTimeout(() => el.classList.add('in'), totalDelay);
                 obs.unobserve(el);
             }
         });
-    }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
     els.forEach(el => obs.observe(el));
 }
 
@@ -163,14 +168,12 @@ function initCounters() {
 
     function countUp(el) {
         const target = parseInt(el.dataset.count);
-        const dur = 2400;
+        const dur = 2200;
         const start = performance.now();
         (function tick(now) {
             const p = Math.min((now - start) / dur, 1);
-            const ease = p < 0.8
-                ? 1 - Math.pow(1 - p / 0.8, 4)
-                : 1 + Math.sin((p - 0.8) / 0.2 * Math.PI) * 0.03;
-            el.textContent = Math.round(target * Math.min(ease, 1));
+            const ease = 1 - Math.pow(1 - p, 4);
+            el.textContent = Math.round(target * ease);
             if (p < 1) requestAnimationFrame(tick);
         })(start);
     }
@@ -196,10 +199,10 @@ function initHeroDotGrid() {
     });
     canvas.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
 
-    const spacing = 30;
+    const spacing = 28;
     let dots = [];
-    const activationRadius = 200;
-    const connectionRadius = 65;
+    const activationRadius = 220;
+    const connectionRadius = 70;
 
     const dotColors = [
         [79, 125, 247],
@@ -216,15 +219,15 @@ function initHeroDotGrid() {
             for (let c = 0; c < cols; c++) {
                 const colorRoll = Math.random();
                 let color;
-                if (colorRoll < 0.65) color = dotColors[0];
-                else if (colorRoll < 0.8) color = dotColors[1];
-                else if (colorRoll < 0.92) color = dotColors[2];
+                if (colorRoll < 0.6) color = dotColors[0];
+                else if (colorRoll < 0.78) color = dotColors[1];
+                else if (colorRoll < 0.91) color = dotColors[2];
                 else color = dotColors[3];
 
                 dots.push({
                     baseX: c * spacing, baseY: r * spacing,
                     x: c * spacing, y: r * spacing,
-                    baseAlpha: 0.04 + Math.random() * 0.02,
+                    baseAlpha: 0.035 + Math.random() * 0.025,
                     alpha: 0, targetAlpha: 0,
                     size: 1, targetSize: 1,
                     phase: Math.random() * Math.PI * 2,
@@ -240,23 +243,24 @@ function initHeroDotGrid() {
 
     function draw() {
         ctx.clearRect(0, 0, w, h);
-        time += 0.006;
+        time += 0.005;
 
         const activeDots = [];
 
         for (const dot of dots) {
-            dot.x = dot.baseX + Math.sin(time + dot.phase) * 1.2;
-            dot.y = dot.baseY + Math.cos(time * 0.7 + dot.phase * 1.3) * 1.2;
+            dot.x = dot.baseX + Math.sin(time + dot.phase) * 1.5;
+            dot.y = dot.baseY + Math.cos(time * 0.7 + dot.phase * 1.3) * 1.5;
 
             const dx = dot.x - mouse.x, dy = dot.y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < activationRadius) {
                 const proximity = 1 - dist / activationRadius;
-                dot.targetAlpha = dot.baseAlpha + proximity * 0.5;
-                dot.targetSize = 1 + proximity * 2.8;
+                const pCurve = proximity * proximity;
+                dot.targetAlpha = dot.baseAlpha + pCurve * 0.55;
+                dot.targetSize = 1 + pCurve * 3;
                 activeDots.push(dot);
-                const repel = proximity * 5;
+                const repel = pCurve * 6;
                 dot.x += (dx / dist) * repel;
                 dot.y += (dy / dist) * repel;
             } else {
@@ -264,8 +268,8 @@ function initHeroDotGrid() {
                 dot.targetSize = 1;
             }
 
-            dot.alpha += (dot.targetAlpha - dot.alpha) * 0.07;
-            dot.size += (dot.targetSize - dot.size) * 0.07;
+            dot.alpha += (dot.targetAlpha - dot.alpha) * 0.06;
+            dot.size += (dot.targetSize - dot.size) * 0.06;
 
             if (dot.alpha > 0.01) {
                 ctx.beginPath();
@@ -279,10 +283,10 @@ function initHeroDotGrid() {
         for (let i = 0; i < activeDots.length; i++) {
             for (let j = i + 1; j < activeDots.length; j++) {
                 const a = activeDots[i], b = activeDots[j];
-                const dx = a.x - b.x, dy = a.y - b.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+                const ddx = a.x - b.x, ddy = a.y - b.y;
+                const dist = Math.sqrt(ddx * ddx + ddy * ddy);
                 if (dist < connectionRadius) {
-                    const alpha = (1 - dist / connectionRadius) * 0.12;
+                    const alpha = (1 - dist / connectionRadius) * 0.14;
                     ctx.beginPath();
                     ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
                     ctx.strokeStyle = `rgba(79,125,247,${alpha})`;
@@ -292,9 +296,10 @@ function initHeroDotGrid() {
             }
         }
 
+        /* Ambient triangle watermark */
         const cx = w * 0.5, cy = h * 0.38;
         const triSize = Math.min(w, h) * 0.16;
-        const triAlpha = 0.012 + Math.sin(time * 0.5) * 0.004;
+        const triAlpha = 0.015 + Math.sin(time * 0.4) * 0.005;
 
         ctx.beginPath();
         ctx.moveTo(cx, cy - triSize);
@@ -311,7 +316,7 @@ function initHeroDotGrid() {
         ctx.lineTo(cx + inner * 0.87, cy + inner * 0.5);
         ctx.lineTo(cx - inner * 0.87, cy + inner * 0.5);
         ctx.closePath();
-        ctx.strokeStyle = `rgba(139,108,247,${triAlpha * 0.8})`;
+        ctx.strokeStyle = `rgba(139,108,247,${triAlpha * 0.7})`;
         ctx.lineWidth = 0.5;
         ctx.stroke();
 
@@ -341,24 +346,24 @@ function initBackgroundParticles() {
         [245, 166, 35],
     ];
 
-    const particleCount = 50;
+    const particleCount = 55;
     const particles = [];
 
     for (let i = 0; i < particleCount; i++) {
         const color = colors[Math.floor(Math.random() * colors.length)];
-        const isTriangle = Math.random() < 0.25;
+        const isTriangle = Math.random() < 0.3;
         particles.push({
             x: Math.random() * w,
             y: Math.random() * h,
-            vx: (Math.random() - 0.5) * 0.3,
-            vy: (Math.random() - 0.5) * 0.2 - 0.1,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: (Math.random() - 0.5) * 0.15 - 0.08,
             size: 1.5 + Math.random() * 2.5,
             color: color,
-            alpha: 0.03 + Math.random() * 0.06,
+            alpha: 0.025 + Math.random() * 0.05,
             phase: Math.random() * Math.PI * 2,
             isTriangle: isTriangle,
             rotation: Math.random() * Math.PI * 2,
-            rotSpeed: (Math.random() - 0.5) * 0.005,
+            rotSpeed: (Math.random() - 0.5) * 0.004,
         });
     }
 
@@ -366,7 +371,7 @@ function initBackgroundParticles() {
         ctx.clearRect(0, 0, w, h);
 
         for (const p of particles) {
-            p.x += p.vx + Math.sin(p.phase + performance.now() * 0.0003) * 0.15;
+            p.x += p.vx + Math.sin(p.phase + performance.now() * 0.0002) * 0.12;
             p.y += p.vy;
             p.rotation += p.rotSpeed;
 
@@ -418,7 +423,7 @@ function initGlowCards() {
     });
 }
 
-/* ===================== SCROLL COLOR TEXT ===================== */
+/* ===================== SCROLL COLOR TEXT (fixed <em> handling) ===================== */
 function initScrollColorText() {
     const el = document.querySelector('[data-scroll-color]');
     if (!el) return;
@@ -428,6 +433,7 @@ function initScrollColorText() {
     tempDiv.innerHTML = html;
 
     let wordIndex = 0;
+
     function wrapWords(node) {
         if (node.nodeType === Node.TEXT_NODE) {
             const words = node.textContent.split(/(\s+)/);
@@ -445,15 +451,35 @@ function initScrollColorText() {
             });
             return fragment;
         } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const isEm = node.tagName === 'EM';
+            if (isEm) {
+                /* Don't double-wrap <em>: process children as emphasis words */
+                const fragment = document.createDocumentFragment();
+                Array.from(node.childNodes).forEach(child => {
+                    if (child.nodeType === Node.TEXT_NODE) {
+                        const words = child.textContent.split(/(\s+)/);
+                        words.forEach(word => {
+                            if (word.trim()) {
+                                const span = document.createElement('span');
+                                span.className = 'st-word st-em';
+                                span.textContent = word;
+                                span.dataset.wordIdx = wordIndex++;
+                                fragment.appendChild(span);
+                            } else if (word) {
+                                fragment.appendChild(document.createTextNode(word));
+                            }
+                        });
+                    } else {
+                        fragment.appendChild(wrapWords(child));
+                    }
+                });
+                return fragment;
+            }
             const clone = node.cloneNode(false);
             Array.from(node.childNodes).forEach(child => {
                 clone.appendChild(wrapWords(child));
             });
-            const span = document.createElement('span');
-            span.className = 'st-word';
-            span.dataset.wordIdx = wordIndex++;
-            span.appendChild(clone);
-            return span;
+            return clone;
         }
         return node.cloneNode(true);
     }
@@ -471,7 +497,7 @@ function initScrollColorText() {
     function update() {
         const rect = el.getBoundingClientRect();
         const winH = window.innerHeight;
-        const progress = Math.max(0, Math.min(1, (winH * 0.8 - rect.top) / (winH * 0.6)));
+        const progress = Math.max(0, Math.min(1, (winH * 0.75 - rect.top) / (winH * 0.55)));
         const litCount = Math.floor(progress * totalWords);
         words.forEach((w, i) => w.classList.toggle('lit', i < litCount));
         requestAnimationFrame(update);
@@ -479,7 +505,7 @@ function initScrollColorText() {
     update();
 }
 
-/* ===================== 3D TILT ===================== */
+/* ===================== 3D TILT (iOS-style perspective) ===================== */
 function initTilt() {
     if (window.innerWidth < 769) return;
     document.querySelectorAll('[data-tilt]').forEach(card => {
@@ -487,10 +513,50 @@ function initTilt() {
             const r = card.getBoundingClientRect();
             const x = (e.clientX - r.left) / r.width - 0.5;
             const y = (e.clientY - r.top) / r.height - 0.5;
-            card.style.transform = `perspective(800px) rotateX(${y * -6}deg) rotateY(${x * 6}deg) translateY(-8px) scale(1.01)`;
+            card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 5}deg) translateY(-10px) scale(1.015)`;
         });
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+            card.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+        });
+    });
+}
+
+/* ===================== 3D DEPTH CARDS ===================== */
+function initDepthCards() {
+    if (window.innerWidth < 769) return;
+    document.querySelectorAll('[data-depth]').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            const inner = card.querySelector('.adv-inner,.proc-inner,.tc-inner');
+            if (inner) {
+                inner.style.transform = `translate3d(${x * 8}px, ${y * 8}px, 20px)`;
+                inner.style.transition = 'transform 0.3s ease-out';
+            }
+        });
+        card.addEventListener('mouseleave', e => {
+            const inner = e.currentTarget.querySelector('.adv-inner,.proc-inner,.tc-inner');
+            if (inner) {
+                inner.style.transform = 'translate3d(0,0,0)';
+            }
+        });
+    });
+}
+
+/* ===================== FORM FOCUS EFFECTS ===================== */
+function initFormFocus() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+    const card = form.closest('.glass-card');
+    if (!card) return;
+
+    form.querySelectorAll('input, textarea, select').forEach(field => {
+        field.addEventListener('focus', () => {
+            card.style.boxShadow = '0 8px 40px rgba(79,125,247,0.15), 0 0 80px rgba(79,125,247,0.06)';
+        });
+        field.addEventListener('blur', () => {
+            card.style.boxShadow = '';
         });
     });
 }
@@ -503,11 +569,11 @@ function initMagnetic() {
             const r = el.getBoundingClientRect();
             const x = e.clientX - r.left - r.width / 2;
             const y = e.clientY - r.top - r.height / 2;
-            el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+            el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
         });
         el.addEventListener('mouseleave', () => {
             el.style.transform = 'translate(0, 0)';
-            el.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            el.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             setTimeout(() => el.style.transition = '', 500);
         });
     });
@@ -561,18 +627,14 @@ function initSmoothLinks() {
 /* ===================== PARALLAX ===================== */
 function initParallax() {
     const heroContent = document.querySelector('.hero-content');
-    const orb1 = document.querySelector('.hero-orb-1');
-    const orb2 = document.querySelector('.hero-orb-2');
     if (!heroContent) return;
 
     (function tick() {
         const y = isSmooth ? smoothY : window.scrollY;
         if (y < window.innerHeight * 1.3) {
             const ratio = y / window.innerHeight;
-            heroContent.style.transform = `translateY(${y * 0.18}px)`;
-            heroContent.style.opacity = 1 - ratio * 0.7;
-            if (orb1) orb1.style.transform = `translate(${Math.sin(Date.now()/3000)*30}px, ${y * 0.08 + Math.cos(Date.now()/4000)*20}px)`;
-            if (orb2) orb2.style.transform = `translate(${Math.cos(Date.now()/3500)*25}px, ${y * 0.05 + Math.sin(Date.now()/4500)*15}px)`;
+            heroContent.style.transform = `translateY(${y * 0.15}px)`;
+            heroContent.style.opacity = 1 - ratio * 0.65;
         }
         requestAnimationFrame(tick);
     })();
